@@ -1,0 +1,10 @@
+/node_modules
+/npm-debug.*
+/components
+/tmp
+.DS_Store
+*/node_modules
+*/npm-debug.*
+*/components
+*/tmp
+*/build

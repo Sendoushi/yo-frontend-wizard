@@ -1,0 +1,93 @@
+[{
+    "name": "name",
+    "type": "input",
+    "message": "Name",
+    "default": "App"
+}, {
+    "name": "version",
+    "type": "input",
+    "message": "Version",
+    "default": "0.0.1"
+}, {
+    "name": "repo",
+    "type": "input",
+    "message": "Repository url"
+}, {
+    "name": "structure",
+    "type": "list",
+    "message": "Structure",
+    "default": 3,
+    "choices": [{
+        "value": "backbone_bedrock",
+        "name": "Backbone + Bedrock"
+    }, {
+        "value": "redux_riot",
+        "name": "Redux + Riot"
+    }, {
+        "value": "php",
+        "name": "Simple PHP"
+    }, {
+        "value": "html",
+        "name": "Simple HTML"
+    }]
+}, {
+    "name": "tech",
+    "type": "checkbox",
+    "message": "Technologies",
+    "choices": [{
+        "value": "babel",
+        "name": "Babel",
+        "checked": true
+    }, {
+        "value": "promises",
+        "name": "Promises",
+        "checked": true
+    }, {
+        "value": "sass",
+        "name": "Sass",
+        "checked": true
+    }, {
+        "value": "normalizer",
+        "name": "Normalizer",
+        "checked": true
+    }, {
+        "value": "sdk",
+        "name": "Sdk",
+        "checked": true
+    }, {
+        "value": "foundation",
+        "name": "Foundation"
+    }, {
+        "value": "jquery",
+        "name": "jQuery"
+    }, {
+        "value": "mout",
+        "name": "Mout"
+    }, {
+        "value": "bower",
+        "name": "Bower"
+    }]
+}, {
+    "name": "minie",
+    "type": "list",
+    "message": "Minimum IE Browser",
+    "default": 1,
+    "choices": [{
+        "value": "9",
+        "name": "ie9"
+    }, {
+        "value": "10",
+        "name": "ie10"
+    }, {
+        "value": "11",
+        "name": "ie11"
+    }, {
+        "value": "edge",
+        "name": "Edge"
+    }]
+}, {
+    "name": "routes",
+    "type": "input",
+    "message": "State your routes separated by \",\" and internal routes preceeded by \"-\" (multiple for nested)",
+    "default": "home,contact"
+}]
