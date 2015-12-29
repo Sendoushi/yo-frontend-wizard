@@ -39,7 +39,7 @@ module.exports = {
             tech: props.tech,
             routes: [{
                 name: 'app',
-                nameCamelcase: 'App',
+                nameCamelcase: 'app',
                 nameAllCamelcase: 'App',
                 children: props.routes,
                 htmlContent: '<div class="content"></div>'
