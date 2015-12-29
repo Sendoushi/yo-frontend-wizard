@@ -67,7 +67,8 @@ module.exports = function (grunt) {
             target: {
                 files: {
                     '../build/app.scss': [
-                        '../src/styles/main.scss'
+                        '../src/components/css/main.scss',
+                        '../src/structure/css/main.scss'
                     ]
                 }
             }
@@ -119,13 +120,11 @@ module.exports = function (grunt) {
         },
         copy: {
             main: {
-                files: [
+                files: [<% if (structure === 'backbone_bedrock' || structure === 'redux_riot') { %>
+                    // import html files for one page javascript
+                    { expand: true, cwd: '../src/structure', src: ['index.html', 'home.html'], dest: '../build/' },<% } %>
                     // import files in assets
-                    { expand: true, cwd: '../src', src: ['**/*.gif'], dest: '../build/' },
-                    { expand: true, cwd: '../src', src: ['**/*.jpg'], dest: '../build/' },
-                    { expand: true, cwd: '../src', src: ['**/*.png'], dest: '../build/' },
-                    { expand: true, cwd: '../src', src: ['**/*.svg'], dest: '../build/' },
-                    { expand: true, cwd: '../src', src: ['**/*.pdf'], dest: '../build/' },
+                    { expand: true, cwd: '../src', src: ['**/assets'], dest: '../build/' },
                     // import favicon
                     { expand: true, cwd: '../src', src: ['*.ico'], dest: '../build/' },
                     // Outdated browser
@@ -158,11 +157,10 @@ module.exports = function (grunt) {
                     { expand: true, cwd: '../build', src: ['**/*.svg'], dest: '../build/' }
                 ]
             }
-        },<% if (structure === 'html') { %>
+        }<% if (structure === 'html') { %>,
         htmlbuild: {
             target: {
-                src: '../src/html/structure/**/*',
-                dest: '../build'
+                files: [{ expand: true, cwd: '../src/structure', src: ['**/*.html'], dest: '../build/' }]
             },
             options: {
                 // prefix: '//some-cdn', // TODO: Change this to a final basePath
@@ -172,7 +170,7 @@ module.exports = function (grunt) {
                     templates: require('../src/_templates_mapping.js')
                 }
             }
-        },<% } %>
+        }<% } %><% if (structure === 'html' || structure === 'php') { %>,
         htmlmin: {
             dist: {
                 options: {
@@ -185,7 +183,7 @@ module.exports = function (grunt) {
                     { expand: true, cwd: '../build', src: ['**/*.php'], dest: '../build/' }
                 ]
             }
-        }
+        }<% } %>
     });
 
     // Remove old files

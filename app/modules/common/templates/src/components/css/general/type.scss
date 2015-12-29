@@ -1,0 +1,113 @@
+/*******************
+* Typography fonts
+********************/
+
+$sans-serif-light: sans-serif;
+$sans-serif-regular: sans-serif;
+$sans-serif-medium: sans-serif;
+$sans-serif-bold: sans-serif;
+$sans-serif-italic: sans-serif;
+
+$serif-light: serif;
+$serif-regular: serif;
+$serif-medium: serif;
+$serif-bold: serif;
+$serif-italic: serif;
+
+.ss-lt {
+    font-family: $sans-serif-light;
+    font-weight: normal;
+}
+
+.ss-rg {
+    font-family: $sans-serif-regular;
+    font-weight: normal;
+}
+
+.ss-md {
+    font-family: $sans-serif-medium;
+    font-weight: normal;
+}
+
+.ss-bd {
+    font-family: $sans-serif-bold;
+    font-weight: normal;
+}
+
+.s-lt {
+    font-family: $serif-light;
+    font-weight: normal;
+}
+
+.s-rg {
+    font-family: $serif-regular;
+    font-weight: normal;
+}
+
+.s-md {
+    font-family: $serif-medium;
+    font-weight: normal;
+}
+
+b,
+.s-bd {
+    font-family: $serif-bold;
+    font-weight: normal;
+}
+
+i,
+.s-it {
+    font-family: $serif-italic;
+    font-weight: normal;
+}
+
+/*******************
+* Headings
+********************/
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: normal;
+}
+
+/*******************
+* General
+********************/
+.inverse {
+}
+
+/*******************
+* Links
+********************/
+a {
+    text-decoration: none;
+    transition: color $animation-time $animation-ease;
+    color: $primary-dark-color;
+
+    &, &:visited, &:focus {
+        outline: none;
+        color: inherit;
+    }
+
+    &:hover,
+    &.active {
+        color: $primary-color;
+    }
+}
+
+.inverse a {
+    color: $primary-inverse-color;
+
+    &:hover,
+    &.active {
+        color: $primary-inverse-color;
+    }
+}
+
+/***********************
+* Mobile
+***********************/
+.is-mobile {
+    a:hover {
+        color: inherit;
+    }
+}

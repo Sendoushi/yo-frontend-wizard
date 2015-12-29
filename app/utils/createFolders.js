@@ -3,6 +3,8 @@
 // -----------------------------------------
 // VARS
 
+var path = require('path');
+
 // -----------------------------------------
 // EXPORT
 
@@ -14,5 +16,6 @@
 module.exports = function (props, folders) {
     for (var i = 0; i < folders.length; i += 1) {
         this.mkdir(folders[i]);
+        this.copy('common/templates/.gitkeep', path.join(folders[i], '.gitkeep'));
     }
 };

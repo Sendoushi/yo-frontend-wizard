@@ -5,6 +5,7 @@
 
 var templateBase = require('../../utils/templateBase.js');
 var createFolders = require('../../utils/createFolders.js');
+var createAssets = require('../../utils/createAssets.js');
 
 // -----------------------------------------
 // EXPORT
@@ -22,6 +23,7 @@ module.exports = {
     init: function (yo, props) {
         templateBase = templateBase.bind(yo, props, '/common/templates');
         createFolders = createFolders.bind(yo, props);
+        createAssets = createAssets.bind(yo, props);
 
         // Sets dirs
         this._setBuild(props);
@@ -53,7 +55,6 @@ module.exports = {
      */
     _setBuild: function () {
         createFolders(['build']);
-        templateBase(['build/.gitkeep']);
     },
 
     /**
@@ -62,7 +63,6 @@ module.exports = {
      * @private
      */
     _setConfig: function () {
-        createFolders(['config']);
         templateBase(['config/mapping.js']);
     },
 
@@ -73,36 +73,29 @@ module.exports = {
      * @private
      */
     _setSource: function (props) {
-        // Create folders
-        createFolders([
-            'src',
-            'src/components',
-            'src/structure',
-            'src/styles'
-        ]);
+        // Create assets
+        createAssets(['src/components']);
 
         // Template and copy files
         templateBase([
             'src/bootstrap.js',
             'src/favicon.ico',
-            'src/styles/main.scss',
-            'src/structure/.gitkeep',
-            'src/components/.gitkeep'
+            'src/utils/is.js',
+            'src/structure/css/main.scss',
+            'src/components/css/main.scss',
+            'src/components/css/general/form.scss',
+            'src/components/css/general/general.scss',
+            'src/components/css/general/global.scss',
+            'src/components/css/general/icons.scss',
+            'src/components/css/general/type.scss',
+            'src/components/css/general/utils.scss',
+            'src/components/css/vendor/normalize.scss'
         ]);
 
         // Now the specifics
         if (!!props.tech.sdk) {
-            // Create folders
-            createFolders([
-                'src/sdk',
-                'src/sdk/modules'
-            ]);
-
-            // Template and copy files
-            templateBase([
-                'src/sdk/sdk.js',
-                'src/sdk/modules/.gitkeep'
-            ]);
+            createFolders(['src/sdk/modules']);
+            templateBase(['src/sdk/sdk.js']);
         }
     },
 
@@ -112,10 +105,6 @@ module.exports = {
      * @private
      */
     _setTasks: function () {
-        // Create folders
-        createFolders(['tasks']);
-
-        // Template and copy files
         templateBase([
             'tasks/build.js',
             'tasks/server.js'

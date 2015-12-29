@@ -89,5 +89,5 @@
     "name": "routes",
     "type": "input",
     "message": "State your routes separated by \",\" and internal routes preceeded by \"-\" (multiple for nested)",
-    "default": "home,contact"
+    "default": "index,contact"
 }]
