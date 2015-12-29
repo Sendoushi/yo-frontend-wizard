@@ -16,7 +16,7 @@
     "name": "structure",
     "type": "list",
     "message": "Structure",
-    "default": 3,
+    "default": 0,
     "choices": [{
         "value": "backbone_bedrock",
         "name": "Backbone + Bedrock"

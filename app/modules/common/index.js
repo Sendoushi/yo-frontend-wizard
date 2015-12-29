@@ -78,18 +78,17 @@ module.exports = {
 
         // Template and copy files
         templateBase([
-            'src/bootstrap.js',
             'src/favicon.ico',
             'src/utils/is.js',
-            'src/structure/css/main.scss',
-            'src/components/css/main.scss',
-            'src/components/css/general/form.scss',
-            'src/components/css/general/general.scss',
-            'src/components/css/general/global.scss',
-            'src/components/css/general/icons.scss',
-            'src/components/css/general/type.scss',
-            'src/components/css/general/utils.scss',
-            'src/components/css/vendor/normalize.scss'
+            'src/structure/_assets/css/main.scss',
+            'src/components/_assets/css/main.scss',
+            'src/components/_assets/css/general/form.scss',
+            'src/components/_assets/css/general/general.scss',
+            'src/components/_assets/css/general/global.scss',
+            'src/components/_assets/css/general/icons.scss',
+            'src/components/_assets/css/general/type.scss',
+            'src/components/_assets/css/general/utils.scss',
+            'src/components/_assets/css/vendor/normalize.scss'
         ]);
 
         // Now the specifics
@@ -105,9 +104,6 @@ module.exports = {
      * @private
      */
     _setTasks: function () {
-        templateBase([
-            'tasks/build.js',
-            'tasks/server.js'
-        ]);
+        templateBase(['tasks/server.js']);
     }
 }

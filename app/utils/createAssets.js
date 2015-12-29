@@ -17,13 +17,17 @@ module.exports = function (props, routes) {
     var i;
 
     for (i = 0; i < routes.length; i += 1) {
-        path = routes[i] + '/assets';
+        path = routes[i] + '/_assets';
 
         createFolders([
             path,
             path + '/img',
             path + '/svg',
-            routes[i] + '/css'
+            path + '/css'
         ]);
+
+        if (props.structure === 'backbone_bedrock') {
+            createFolders([path + '/html']);
+        }
     }
 };

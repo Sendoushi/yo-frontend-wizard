@@ -6,6 +6,7 @@
 var exec = require('child_process').exec;
 var path = require('path');
 var generators = require('yeoman-generator');
+var string = require('./utils/string.js');
 var promptsJson = require('./prompts.json');
 
 // -----------------------------------------
@@ -39,6 +40,8 @@ module.exports = generators.Base.extend({
                         console.log(stdout);
                     }
                 });
+
+                // TODO: Should it add origin and make the first commit?
             }
         }.bind(this));
     },
@@ -173,7 +176,9 @@ module.exports = generators.Base.extend({
         }).filter(function (child) { return !!child; });
 
         return {
-            name: arr[0],
+            name: string.dashize(arr[0]),
+            nameCamelcase: string.camelcase(arr[0]),
+            nameAllCamelcase: string.camelcase(arr[0], true),
             children: this._hierarchyRoutes(children)
         };
     }

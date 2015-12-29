@@ -26,9 +26,10 @@ module.exports = {
      * Camelcases string
      * @method  camelcase
      * @param   {string} str
+     * @param   {boolean} alsoFirst
      * @return  {string}
      */
-    camelcase: function (str) {
+    camelcase: function (str, alsoFirst) {
         str = this._redo(str);
 
         if (!str) {
@@ -47,7 +48,9 @@ module.exports = {
         str = str.replace(/ /g, '');
 
         // First shouldn't be camel case
-        str = str[0].toLowerCase() + str.slice(1, str.length);
+        if (!alsoFirst) {
+            str = str[0].toLowerCase() + str.slice(1, str.length);
+        }
 
         return str;
     },

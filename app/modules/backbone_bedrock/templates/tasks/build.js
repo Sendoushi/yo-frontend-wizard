@@ -49,6 +49,10 @@ module.exports = function (grunt) {
                         test: /\.json?$/,
                         loader: 'json',
                         exclude: /(node_modules|bower_components)/
+                    }, {
+                        test: /\.html?$/,
+                        loader: 'raw',
+                        exclude: /(node_modules|bower_components)/
                     }]
                 },
                 externals: {<% if (!!tech.jquery) { %>
@@ -67,8 +71,8 @@ module.exports = function (grunt) {
             target: {
                 files: {
                     '../build/app.scss': [
-                        '../src/components/css/main.scss',
-                        '../src/structure/css/main.scss'
+                        '../src/components/_assets/css/main.scss',
+                        '../src/structure/_assets/css/main.scss'
                     ]
                 }
             }
@@ -120,9 +124,9 @@ module.exports = function (grunt) {
         },
         copy: {
             main: {
-                files: [<% if (structure === 'backbone_bedrock' || structure === 'redux_riot') { %>
+                files: [
                     // import html files for one page javascript
-                    { expand: true, cwd: '../src/structure', src: ['index.html', 'home.html'], dest: '../build/' },<% } %>
+                    { expand: true, cwd: '../src/structure', src: ['index.html'], dest: '../build/' },
                     // import files in assets
                     { expand: true, cwd: '../src', src: ['**/assets'], dest: '../build/' },
                     // import favicon
@@ -157,33 +161,7 @@ module.exports = function (grunt) {
                     { expand: true, cwd: '../build', src: ['**/*.svg'], dest: '../build/' }
                 ]
             }
-        }<% if (structure === 'html') { %>,
-        htmlbuild: {
-            target: {
-                files: [{ expand: true, cwd: '../src/structure', src: ['**/*.html'], dest: '../build/' }]
-            },
-            options: {
-                // prefix: '//some-cdn', // TODO: Change this to a final basePath
-                beautify: true,
-                relative: false,
-                sections: {
-                    templates: require('../src/_templates_mapping.js')
-                }
-            }
-        }<% } %><% if (structure === 'html' || structure === 'php') { %>,
-        htmlmin: {
-            dist: {
-                options: {
-                    removeComments: true,
-                    collapseWhitespace: true
-                },
-                files: [
-                    { expand: true, cwd: '../build', src: ['**/*.html'], dest: '../build/' },
-                    // TODO: Does this work?
-                    { expand: true, cwd: '../build', src: ['**/*.php'], dest: '../build/' }
-                ]
-            }
-        }<% } %>
+        }
     });
 
     // Remove old files
@@ -201,10 +179,10 @@ module.exports = function (grunt) {
     // The task...
     grunt.registerTask('build',
        isProd ? ['remove_old_files', 'webpack',<% if (!!tech.sass) { %> 'sass_globbing', 'sass',<% } %><% if (!!tech.autoprefixer) { %> 'autoprefixer',<% } %>
-                 <% if (!!tech.rem) { %>'pixrem', <% } %>'cssmin', 'uglify', 'copy', <% if (!!tech.svg) { %>'svgmin', <% } %><% if (structure === 'html') { %>'htmlbuild', <% } %> 'htmlmin',
+                 <% if (!!tech.rem) { %>'pixrem', <% } %>'cssmin', 'uglify', 'copy', <% if (!!tech.svg) { %>'svgmin',<% } %>
                  'clean_build']
        : ['remove_old_files', 'webpack',<% if (!!tech.sass) { %> 'sass_globbing', 'sass',<% } %>
-          'copy',<% if (structure === 'html') { %> 'htmlbuild',<% } %>
+          'copy',
           'clean_build']
    );
 };

@@ -28,6 +28,7 @@ module.exports = {
 
         // Sets dirs
         this._setSource(props);
+        this._setTasks(props);
 
         // Set routes
         this._setRoutes(props, 'src/structure');
@@ -45,12 +46,22 @@ module.exports = {
     _setSource: function (props) {
         // Template and copy files
         templateBase([
+            'src/bootstrap.js',
             'src/components/boilerplate_footer.html',
             'src/components/boilerplate_header.html',
             'src/components/footer.html',
             'src/components/header.html',
             'src/_templates_mapping.js'
         ]);
+    },
+
+    /**
+     * Sets tasks folder
+     * @method  _setTasks
+     * @private
+     */
+    _setTasks: function () {
+        templateBase(['tasks/build.js']);
     },
 
     /**
