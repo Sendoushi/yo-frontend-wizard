@@ -29,6 +29,9 @@
     }, {
         "value": "html",
         "name": "Simple HTML"
+    }, {
+        "value": "none",
+        "name": "No structure"
     }]
 }, {
     "name": "tech",

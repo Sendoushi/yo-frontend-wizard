@@ -3,6 +3,7 @@
 // -----------------------------------------
 // VARS
 
+var exec = require('child_process').exec;
 var path = require('path');
 var generators = require('yeoman-generator');
 var promptsJson = require('./prompts.json');
@@ -23,11 +24,23 @@ module.exports = generators.Base.extend({
 
         this.on('end', function () {
             if (!this.options['skip-install']) {
-                this.installDependencies();
+                var toExec = 'git init; npm install';
 
-                // TODO: Initialize git
+                if (!!this.props.tech.bower) {
+                    toExec += '; bower install';
+                }
+
+                this.log('\n\nInstalling dependencies...\n');
+
+                exec(toExec, function (error, stdout, stderr) {
+                    if (error || stderr) {
+                        console.error(error || stderr);
+                    } else {
+                        console.log(stdout);
+                    }
+                });
             }
-        });
+        }.bind(this));
     },
 
     /**
@@ -59,17 +72,19 @@ module.exports = generators.Base.extend({
         this.sourceRoot(path.join(this.sourceRoot(), '../modules'));
 
         var props = this.props;
-        var structure = props.structure;
 
+        // Take care of common
         var common = require('./modules/common/index.js');
-        var specific = require('./modules/' + structure + '/index.js');
-
-        // Initialize modules
         common.init(this, props);
-        specific.init(this, props);
 
-        // // Install dependencies
-        // this.log(dstPath + ', ' + srcPath);
+        // Take care of specific
+        var structure = props.structure;
+        if (structure === 'none') {
+            return;
+        }
+
+        var specific = require('./modules/' + structure + '/index.js');
+        specific.init(this, props);
     },
 
     // -----------------------------------------
