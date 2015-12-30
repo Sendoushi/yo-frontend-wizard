@@ -79,7 +79,7 @@ module.exports = {
      * @private
      */
     _setTasks: function () {
-        templateBase(['tasks/build.js']);
+        templateBase(['tasks/build.js', 'tasks/server.js']);
     },
 
     /**

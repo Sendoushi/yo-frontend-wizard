@@ -31,6 +31,10 @@ module.exports = generators.Base.extend({
                     toExec += '; bower install';
                 }
 
+                if (this.props.structure === 'php') {
+                    toExec += '; composer install';
+                }
+
                 this.log('\n\nInstalling dependencies...\n');
 
                 exec(toExec, function (error, stdout, stderr) {

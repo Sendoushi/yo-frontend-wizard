@@ -7,9 +7,6 @@ module.exports = function (grunt) {
         express   = require('express'),
         webFolder = path.resolve(path.join('../', 'build'));
 
-    // Load all grunt tasks in node_modules
-    grunt.file.expand('../node_modules/grunt-*/tasks').forEach(grunt.loadTasks);
-
     // The config
     grunt.initConfig({});
 

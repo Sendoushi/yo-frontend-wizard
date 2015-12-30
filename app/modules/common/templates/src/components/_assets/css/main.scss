@@ -1,19 +1,19 @@
 /* Import vendors */
 @import './vendor/normalize.scss';
-@import '../../../node_modules/outdated-browser/outdatedbrowser/outdatedbrowser.scss';
+@import '../../../../node_modules/outdated-browser/outdatedbrowser/outdatedbrowser.scss';
 
 <% if (!!tech.foundation) { %>/* Import basic foundation */
-@import '../../../node_modules/foundation-sites/scss/util/util';
-@import '../../../node_modules/foundation-sites/scss/global';<% } %>
+@import '../../../../node_modules/foundation-sites/scss/util/util';
+@import '../../../../node_modules/foundation-sites/scss/global';<% } %>
 
 /* Import our own global variables */
 @import './general/global.scss';
 @import './general/type.scss';
 
 <% if (!!tech.foundation) { %>/* Import components foundation */
-@import '../../../node_modules/foundation-sites/scss/grid/grid';
-@import '../../../node_modules/foundation-sites/scss/components/visibility';
-@import '../../../node_modules/foundation-sites/scss/components/button';
+@import '../../../../node_modules/foundation-sites/scss/grid/grid';
+@import '../../../../node_modules/foundation-sites/scss/components/visibility';
+@import '../../../../node_modules/foundation-sites/scss/components/button';
 
 /* Initialize foundation */
 @include foundation-global-styles;

@@ -121,8 +121,15 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    // import files in assets
-                    { expand: true, cwd: '../src', src: ['**/assets/**/*'], dest: '../build/' },
+                    // import folders
+                    { expand: true, cwd: '../src/structure', src: ['**/*.php'], dest: '../build/' },
+                    { expand: true, cwd: '../src', src: [
+                        'structure/**/*.twig',
+                        'structure/**/_assets/**/*',
+                        'components/**/*',
+                        'lib_php/**/*'
+                    ], dest: '../build/' },
+                    { expand: true, cwd: '../', src: ['composer/**/*'], dest: '../build/' },
                     // import favicon
                     { expand: true, cwd: '../src', src: ['*.ico'], dest: '../build/' },
                     // Outdated browser
@@ -155,32 +162,6 @@ module.exports = function (grunt) {
                     { expand: true, cwd: '../build', src: ['**/*.svg'], dest: '../build/' }
                 ]
             }
-        },
-        htmlbuild: {
-            target: {
-                files: [{ expand: true, cwd: '../src/structure', src: ['**/*.html'], dest: '../build/' }]
-            },
-            options: {
-                // prefix: '//some-cdn', // TODO: Change this to a final basePath
-                beautify: true,
-                relative: false,
-                sections: {
-                    templates: require('../src/_templates_mapping.js')
-                }
-            }
-        },
-        htmlmin: {
-            dist: {
-                options: {
-                    removeComments: true,
-                    collapseWhitespace: true
-                },
-                files: [
-                    { expand: true, cwd: '../build', src: ['**/*.html'], dest: '../build/' },
-                    // TODO: Does this work?
-                    { expand: true, cwd: '../build', src: ['**/*.php'], dest: '../build/' }
-                ]
-            }
         }
     });
 
@@ -199,10 +180,10 @@ module.exports = function (grunt) {
     // The task...
     grunt.registerTask('build',
        isProd ? ['remove_old_files', 'webpack',<% if (!!tech.sass) { %> 'sass_globbing', 'sass',<% } %><% if (!!tech.autoprefixer) { %> 'autoprefixer',<% } %>
-                 <% if (!!tech.rem) { %>'pixrem', <% } %>'cssmin', 'uglify', 'copy', <% if (!!tech.svg) { %>'svgmin', <% } %>'htmlbuild', 'htmlmin',
+                 <% if (!!tech.rem) { %>'pixrem', <% } %>'cssmin', 'uglify', 'copy',<% if (!!tech.svg) { %>'svgmin',<% } %>
                  'clean_build']
        : ['remove_old_files', 'webpack',<% if (!!tech.sass) { %> 'sass_globbing', 'sass',<% } %>
-          'copy', 'htmlbuild',
+          'copy',
           'clean_build']
    );
 };

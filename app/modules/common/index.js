@@ -29,7 +29,6 @@ module.exports = {
         this._setBuild(props);
         this._setConfig(props);
         this._setSource(props);
-        this._setTasks(props);
 
         // Templates files in the root
         templateBase([
@@ -96,14 +95,5 @@ module.exports = {
             createFolders(['src/sdk/modules']);
             templateBase(['src/sdk/sdk.js']);
         }
-    },
-
-    /**
-     * Sets tasks folder
-     * @method  _setTasks
-     * @private
-     */
-    _setTasks: function () {
-        templateBase(['tasks/server.js']);
     }
 }

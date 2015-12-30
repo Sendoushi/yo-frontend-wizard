@@ -128,7 +128,7 @@ module.exports = function (grunt) {
                     // import html files for one page javascript
                     { expand: true, cwd: '../src/structure', src: ['index.html'], dest: '../build/' },
                     // import files in assets
-                    { expand: true, cwd: '../src', src: ['**/assets'], dest: '../build/' },
+                    { expand: true, cwd: '../src', src: ['**/assets/**/*'], dest: '../build/' },
                     // import favicon
                     { expand: true, cwd: '../src', src: ['*.ico'], dest: '../build/' },
                     // Outdated browser

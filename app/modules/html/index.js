@@ -44,6 +44,8 @@ module.exports = {
      * @private
      */
     _setSource: function (props) {
+        createFolders(['src/scripts']);
+
         // Template and copy files
         templateBase([
             'src/bootstrap.js',
@@ -61,7 +63,7 @@ module.exports = {
      * @private
      */
     _setTasks: function () {
-        templateBase(['tasks/build.js']);
+        templateBase(['tasks/build.js', 'tasks/server.js']);
     },
 
     /**
@@ -100,7 +102,7 @@ module.exports = {
             assetsArr.push(routePath);
 
             // Create the file templated
-            templateBase([template], [path.join(routePath, route.name + '.html')], {
+            templateBase([template], [path.join(routePath, 'index.html')], {
                 name: props.name,
                 routeName: route.name
             });
