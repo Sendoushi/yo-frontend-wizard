@@ -31,7 +31,7 @@ module.exports = generators.Base.extend({
                     toExec += '; bower install';
                 }
 
-                if (this.props.structure === 'php') {
+                if (this.props.structure === 'php' || this.props.structure === 'slim_twig') {
                     toExec += '; composer install';
                 }
 

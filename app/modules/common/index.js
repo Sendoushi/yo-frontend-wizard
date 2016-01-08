@@ -53,7 +53,7 @@ module.exports = {
      * @private
      */
     _setBuild: function () {
-        createFolders(['build']);
+        createFolders(['build', 'test']);
     },
 
     /**

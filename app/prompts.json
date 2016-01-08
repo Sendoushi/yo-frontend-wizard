@@ -16,13 +16,16 @@
     "name": "structure",
     "type": "list",
     "message": "Structure",
-    "default": 2,
+    "default": 1,
     "choices": [{
         "value": "backbone_bedrock",
         "name": "Backbone + Bedrock"
     }, {
         "value": "redux_riot",
         "name": "Redux + Riot"
+    }, {
+        "value": "slim_twig",
+        "name": "Slim + Twig"
     }, {
         "value": "php",
         "name": "Simple PHP"

@@ -22,7 +22,7 @@ module.exports = {
      * @param  {object} props
      */
     init: function (yo, props) {
-        templateBase = templateBase.bind(yo, props, '/php/templates');
+        templateBase = templateBase.bind(yo, props, '/slim_twig/templates');
         createFolders = createFolders.bind(yo, props);
         createAssets = createAssets.bind(yo, props);
 
@@ -52,7 +52,7 @@ module.exports = {
         // Template and copy files
         templateBase([
             'src/bootstrap.js',
-            'src/lib_php/main.php',
+            'src/structure/index.php',
             'src/components/base.html.twig',
             'src/components/boilerplate_footer.html.twig',
             'src/components/boilerplate_header.html.twig',
@@ -67,7 +67,7 @@ module.exports = {
      * @private
      */
     _setTasks: function () {
-        templateBase(['tasks/build.js', 'tasks/server.js']);
+        templateBase(['tasks/build.js']);
     },
 
     /**
@@ -86,7 +86,6 @@ module.exports = {
 
         routes = routes || [];
 
-        var templatePhp = 'src/structure/structure.php';
         var templateTwig = 'src/structure/structure.html.twig';
         var assetsArr = [];
         var routePath;
@@ -107,8 +106,7 @@ module.exports = {
             assetsArr.push(routePath);
 
             // Create the file templated
-            templateBase([templatePhp, templateTwig], [
-                path.join(routePath, 'index.php'),
+            templateBase([templateTwig], [
                 path.join(routePath, route.name + '.html.twig')
             ], {
                 name: props.name,

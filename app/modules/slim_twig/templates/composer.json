@@ -1,0 +1,14 @@
+{
+    "config": {
+        "vendor-dir": "composer"
+    },
+    "require": {
+        "slim/slim": "^3.0",
+        "twig/twig": "1.23.*"
+    },
+    "scripts": {
+        "server": [
+            "cd build; php -S localhost:8000; cd .."
+        ]
+    }
+}
