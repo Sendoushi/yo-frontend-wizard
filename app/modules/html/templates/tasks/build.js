@@ -34,7 +34,15 @@ module.exports = function (grunt) {
                 watch: !isProd,
                 debug: !isProd,
                 resolve: {
-                    modulesDirectories: ['./', 'node_modules', 'bower_components', 'src'],
+                    modulesDirectories: [
+                        './',
+                        'node_modules',
+                        'bower_components',
+                        'src',
+                        'src/utils',
+                        'src/modules/utils',
+                        'src/components/utils'
+                    ],
                     alias: mapping
                 },
                 module: {
@@ -67,8 +75,7 @@ module.exports = function (grunt) {
             target: {
                 files: {
                     '../build/app.scss': [
-                        '../src/components/_assets/css/main.scss',
-                        '../src/structure/_assets/css/main.scss'
+                        '../src/components/_assets/css/main.scss'
                     ]
                 }
             }
@@ -129,7 +136,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '../node_modules/outdated-browser/outdatedbrowser',
-                        src: ['outdatedbrowser.min.js', 'lang/en.html'],
+                        src: ['lang/en.html'],
                         dest: '../build/outdatedbrowser'
                     }
                 ]
@@ -158,7 +165,7 @@ module.exports = function (grunt) {
         },
         htmlbuild: {
             target: {
-                files: [{ expand: true, cwd: '../src/structure', src: ['**/*.html'], dest: '../build/' }]
+                files: [{ expand: true, cwd: '../src/modules', src: ['**/*.html'], dest: '../build/' }]
             },
             options: {
                 // prefix: '//some-cdn', // TODO: Change this to a final basePath

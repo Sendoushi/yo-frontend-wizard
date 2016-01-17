@@ -34,7 +34,15 @@ module.exports = function (grunt) {
                 watch: !isProd,
                 debug: !isProd,
                 resolve: {
-                    modulesDirectories: ['./', 'node_modules', 'bower_components', 'src'],
+                    modulesDirectories: [
+                        './',
+                        'node_modules',
+                        'bower_components',
+                        'src',
+                        'src/utils',
+                        'src/modules/utils',
+                        'src/components/utils'
+                    ],
                     alias: mapping
                 },
                 module: {
@@ -67,8 +75,7 @@ module.exports = function (grunt) {
             target: {
                 files: {
                     '../build/app.scss': [
-                        '../src/components/_assets/css/main.scss',
-                        '../src/structure/_assets/css/main.scss'
+                        '../src/components/_assets/css/main.scss'
                     ]
                 }
             }
@@ -122,10 +129,10 @@ module.exports = function (grunt) {
             main: {
                 files: [
                     // import folders
-                    { expand: true, cwd: '../src/structure', src: ['**/*.php'], dest: '../build/' },
+                    { expand: true, cwd: '../src/modules', src: ['**/*.php'], dest: '../build/' },
                     { expand: true, cwd: '../src', src: [
-                        'structure/**/*.twig',
-                        'structure/**/_assets/**/*',
+                        'modules/**/*.twig',
+                        'modules/**/_assets/**/*',
                         'components/**/*',
                         'lib_php/**/*'
                     ], dest: '../build/' },
@@ -136,7 +143,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '../node_modules/outdated-browser/outdatedbrowser',
-                        src: ['outdatedbrowser.min.js', 'lang/en.html'],
+                        src: ['lang/en.html'],
                         dest: '../build/outdatedbrowser'
                     }
                 ]

@@ -31,7 +31,7 @@ module.exports = {
         this._setTasks(props);
 
         // Set routes
-        this._setRoutes(props, 'src/structure');
+        this._setRoutes(props, 'src/modules');
     },
 
     // -----------------------------------------
@@ -82,7 +82,7 @@ module.exports = {
 
         routes = routes || [];
 
-        var template = 'src/structure/structure.html';
+        var template = 'src/modules/structure.html';
         var assetsArr = [];
         var routePath;
         var route;

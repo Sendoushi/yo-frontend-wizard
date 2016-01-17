@@ -34,7 +34,7 @@ module.exports = {
         templateBase(['composer.json']);
 
         // Set routes
-        this._setRoutes(props, 'src/structure');
+        this._setRoutes(props, 'src/modules');
     },
 
     // -----------------------------------------
@@ -52,7 +52,7 @@ module.exports = {
         // Template and copy files
         templateBase([
             'src/bootstrap.js',
-            'src/structure/index.php',
+            'src/modules/index.php',
             'src/components/base.html.twig',
             'src/components/boilerplate_footer.html.twig',
             'src/components/boilerplate_header.html.twig',
@@ -86,7 +86,7 @@ module.exports = {
 
         routes = routes || [];
 
-        var templateTwig = 'src/structure/structure.html.twig';
+        var templateTwig = 'src/modules/structure.html.twig';
         var assetsArr = [];
         var routePath;
         var route;
@@ -122,4 +122,4 @@ module.exports = {
         // Now create assets
         createAssets(assetsArr);
     }
-}
+};

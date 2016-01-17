@@ -1,36 +1,31 @@
 (function () {
     'use strict';
 
-    // -----------------------------------------
-    // VARS
-
-    let is = require('./utils/is.js');
+    let is = require('is.js');
+    let outdatedBrowser = require('outdatedbrowser.js');
 
     // -----------------------------------------
-    // PUBLIC FUNCTIONS
+    // FUNCTIONS
 
     /**
      * Initialize the app
      */
-    let init = () => {<% if (!!tech.jquery) { %>
-        let bodyEl = $('body');
+    let init = () => {
+        let bodyEl = document.getElementById('body');
+        let classList = bodyEl.classList;
 
-        // There is no need for this anymore
-        bodyEl.removeClass('no-script');
+        // Remove class no-script
+        classList.remove('no-script');
 
-        // Find if is mobile
-        bodyEl.addClass(is.mobile() ? 'is-mobile' : 'is-desktop');
+        is.ie() && classList.add('is-ie');
+        is.mobile() && classList.add('is-mobile');
 
-        // Find if is IE
-        !!is.ie() && bodyEl.addClass('is-ie');
-        <% } else { %>
-        // TODO: Set mobile
-        // TODO: Set ie
-        // TODO: Remove class no-script<% } %>
+        // Set outdated browser
+        outdatedBrowser({
+            lowerThan: '<% if (minie === "edge") { %>edge<% } else { %>IE<%= minie %><% } %>',
+            languagePath: ''
+        });
     };
-
-    // -----------------------------------------
-    // PRIVATE FUNCTIONS
 
     // -----------------------------------------
 

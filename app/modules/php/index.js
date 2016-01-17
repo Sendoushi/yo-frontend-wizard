@@ -34,7 +34,7 @@ module.exports = {
         templateBase(['composer.json']);
 
         // Set routes
-        this._setRoutes(props, 'src/structure');
+        this._setRoutes(props, 'src/modules');
     },
 
     // -----------------------------------------
@@ -86,8 +86,8 @@ module.exports = {
 
         routes = routes || [];
 
-        var templatePhp = 'src/structure/structure.php';
-        var templateTwig = 'src/structure/structure.html.twig';
+        var templatePhp = 'src/modules/structure.php';
+        var templateTwig = 'src/modules/structure.html.twig';
         var assetsArr = [];
         var routePath;
         var route;
@@ -124,4 +124,4 @@ module.exports = {
         // Now create assets
         createAssets(assetsArr);
     }
-}
+};

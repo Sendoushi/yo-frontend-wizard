@@ -44,7 +44,7 @@ module.exports = {
                 children: props.routes,
                 htmlContent: '<div class="content"></div>'
             }]
-        }, 'src/structure');
+        }, 'src/modules');
     },
 
     // -----------------------------------------
@@ -69,7 +69,7 @@ module.exports = {
         // Template and copy files
         templateBase([
             'src/bootstrap.js',
-            'src/structure/index.html'
+            'src/modules/index.html'
         ]);
     },
 
@@ -98,9 +98,9 @@ module.exports = {
 
         routes = routes || [];
 
-        var templateView = 'src/structure/view.js';
-        var templateController = 'src/structure/controller.js';
-        var templateHtml = 'src/structure/structure.html';
+        var templateView = 'src/modules/view.js';
+        var templateController = 'src/modules/controller.js';
+        var templateHtml = 'src/modules/structure.html';
         var assetsArr = [];
         var routePath;
         var route;
@@ -136,4 +136,4 @@ module.exports = {
         // Now create assets
         createAssets(assetsArr);
     }
-}
+};

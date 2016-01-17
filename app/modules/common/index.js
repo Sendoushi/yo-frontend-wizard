@@ -79,7 +79,7 @@ module.exports = {
         templateBase([
             'src/favicon.ico',
             'src/utils/is.js',
-            'src/structure/_assets/css/main.scss',
+            'src/utils/outdatedbrowser.js',
             'src/components/_assets/css/main.scss',
             'src/components/_assets/css/general/form.scss',
             'src/components/_assets/css/general/general.scss',
@@ -96,4 +96,4 @@ module.exports = {
             templateBase(['src/sdk/sdk.js']);
         }
     }
-}
+};

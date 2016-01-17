@@ -1,23 +1,54 @@
-/* Colors */
-$darkest-color: #000;
-$brightest-color: #fff;
+/////////////////////////////
+// Colors
 
-$primary-color: $darkest-color;
-$primary-brightest-color: $darkest-color;
-$primary-bright-color: $darkest-color;
-$primary-dark-color: $darkest-color;
-$primary-darkest-color: $darkest-color;
+/////////////////////////////
+// Example of compound
+//
+// /* Grays */
+// $brightest-color: #fff;
+// $bright-color: #242424;
+// $neutral-color: #242424;
+// $dark-color: #242424;
+// $darkest-color: #242424;
+//
+// /* Compound */
+// $compound-one-color: #FF6A00;
+// $compound-three-color: #40FFDA;
+// $compound-two-color: #14CC74;
+// $compound-four-color: #997B3D;
+// $compound-five-color: #CC8F14;
+//
+// /* Hack for other variables */
+// $primary-color: $compound-one-color;
+// $primary-inverse-color: $brightest-color;
+// $primary-dark-color: $compound-five-color;
+// $secondary-color: $brightest-color;
 
-$primary-inverse-color: $brightest-color;
+/////////////////////////////
+// Example of primary and secondary
+//
+// /* Colors */
+// $darkest-color: #000;
+// $brightest-color: #fff;
+//
+// $primary-color: $darkest-color;
+// $primary-brightest-color: $darkest-color;
+// $primary-bright-color: $darkest-color;
+// $primary-dark-color: $darkest-color;
+// $primary-darkest-color: $darkest-color;
+//
+// $primary-inverse-color: $brightest-color;
+//
+// $secondary-color: $darkest-color;
+// $secondary-brightest-color: $darkest-color;
+// $secondary-bright-color: $darkest-color;
+// $secondary-dark-color: $darkest-color;
+// $secondary-darkest-color: $darkest-color;
+//
+// $secondary-inverse-color: $brightest-color;
 
-$secondary-color: $darkest-color;
-$secondary-brightest-color: $darkest-color;
-$secondary-bright-color: $darkest-color;
-$secondary-dark-color: $darkest-color;
-$secondary-darkest-color: $darkest-color;
+/////////////////////////////
+// Animation
 
-$secondary-inverse-color: $brightest-color;
-
-/* Animation */
 $animation-ease: ease-out;
 $animation-time: 0.15s;

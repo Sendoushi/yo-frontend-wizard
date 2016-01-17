@@ -67,9 +67,6 @@
         "value": "jquery",
         "name": "jQuery"
     }, {
-        "value": "mout",
-        "name": "Mout"
-    }, {
         "value": "bower",
         "name": "Bower"
     }]

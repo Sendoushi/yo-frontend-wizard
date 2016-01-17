@@ -44,11 +44,11 @@ module.exports = {
         // Template and copy files
         templateBase([
             'src/bootstrap.js',
-            'src/structure/index.html'
+            'src/components/_assets/html/index.html'
         ]);
 
-        // Set app structure
-        templateBase(['src/structure/structure.js'], ['src/structure/app.js'], {
+        // Set app modules
+        templateBase(['src/components/app.js'], ['src/components/app.js'], {
             name: props.name,
             routeName: 'app',
             routeNameCamelcase: 'app',
@@ -58,17 +58,22 @@ module.exports = {
 
         // Create store
         templateBase([
-            'src/store.js',
-            'src/action.js',
-            'src/stores/utils/store.js'
+            'src/modules/example/store.js',
+            'src/modules/example/actions.js',
+            'src/modules/utils/baseStore.js',
+            'src/modules/utils/baseActions.js',
+            'src/components/utils/baseComponent.js',
+            'src/modules/route/actions.js',
+            'src/modules/route/store.js'
         ], [
-            'src/stores/exampleStore.js',
-            'src/actions/exampleAction.js',
-            'src/stores/utils/store.js'
+            'src/modules/example/store.js',
+            'src/modules/example/actions.js',
+            'src/modules/utils/baseStore.js',
+            'src/modules/utils/baseActions.js',
+            'src/components/utils/baseComponent.js',
+            'src/modules/route/actions.js',
+            'src/modules/route/store.js'
         ]);
-
-        // Now create assets
-        createAssets(['src/structure']);
     },
 
     /**
@@ -79,4 +84,4 @@ module.exports = {
     _setTasks: function () {
         templateBase(['tasks/build.js', 'tasks/server.js']);
     }
-}
+};

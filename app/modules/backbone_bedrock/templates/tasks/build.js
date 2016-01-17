@@ -34,7 +34,15 @@ module.exports = function (grunt) {
                 watch: !isProd,
                 debug: !isProd,
                 resolve: {
-                    modulesDirectories: ['./', 'node_modules', 'bower_components', 'src'],
+                    modulesDirectories: [
+                        './',
+                        'node_modules',
+                        'bower_components',
+                        'src',
+                        'src/utils',
+                        'src/modules/utils',
+                        'src/components/utils'
+                    ],
                     alias: mapping
                 },
                 module: {
@@ -71,8 +79,7 @@ module.exports = function (grunt) {
             target: {
                 files: {
                     '../build/app.scss': [
-                        '../src/components/_assets/css/main.scss',
-                        '../src/structure/_assets/css/main.scss'
+                        '../src/components/_assets/css/main.scss'
                     ]
                 }
             }
@@ -125,17 +132,18 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    // import html files for one page javascript
-                    { expand: true, cwd: '../src/structure', src: ['index.html'], dest: '../build/' },
-                    // import files in assets
-                    { expand: true, cwd: '../src', src: ['**/assets/**/*'], dest: '../build/' },
-                    // import favicon
-                    { expand: true, cwd: '../src', src: ['*.ico'], dest: '../build/' },
+                    { expand: true, cwd: '../src/components/_assets/html', src: ['index.html'], dest: '../build/' },
+                    { expand: true, cwd: '../src/components', src: ['**/_assets/**/*.svg'], dest: '../build/components/' },
+                    { expand: true, cwd: '../src/components', src: ['**/_assets/**/*.png'], dest: '../build/components/' },
+                    { expand: true, cwd: '../src/components', src: ['**/_assets/**/*.gif'], dest: '../build/components/' },
+                    { expand: true, cwd: '../src/components', src: ['**/_assets/**/*.jpg'], dest: '../build/components/' },
+                    { expand: true, cwd: '../src/modules', src: ['**/_assets/**/*'], dest: '../build/modules/' },
+                    { expand: true, cwd: '../src/components/_assets/ico', src: ['*.ico'], dest: '../build/' },
                     // Outdated browser
                     {
                         expand: true,
                         cwd: '../node_modules/outdated-browser/outdatedbrowser',
-                        src: ['outdatedbrowser.min.js', 'lang/en.html'],
+                        src: ['lang/en.html'],
                         dest: '../build/outdatedbrowser'
                     }
                 ]

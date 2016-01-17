@@ -1,54 +1,22 @@
 (function () {
     'use strict';
 
-    // -----------------------------------------
-    // VARS
+    let bodyEl = document.getElementById('body');
+    let classList = bodyEl.classList;
 
-    let is = require('./utils/is.js');
+    // Remove class no-script
+    classList.remove('no-script');
 
+    let is = require('is.js');
+    is.ie() && classList.add('is-ie');
+    is.mobile() && classList.add('is-mobile');
+
+    // Mount the app
     let riot = require('riot');
-    require('./structure/app.js');
+    require('./components/app.js');
+    riot.mount('body', 'app');
 
-    // -----------------------------------------
-    // PUBLIC FUNCTIONS
-
-    /**
-     * Initialize the app
-     */
-    let init = () => {
-        // TODO: Set mobile
-        // TODO: Set ie
-        // TODO: Remove class no-script
-
-        let app = riot.mount('app');
-
-        // Router
-        <%
-        function parseRoute(route, base) {
-            var routeUrl = base + route.name;
-
-        %>riot.route('<%= routeUrl %>/*', () => {
-            // TODO: Set route
-        });
-
-        <%
-
-            if (route.children && route.children.length) {
-                for (var i = 0; i < route.children.length; i += 1) {
-                    parseRoute(route.children[i], routeUrl);
-                }
-            }
-        }
-
-        for (var i = 0; i < routes.length; i += 1) {
-            parseRoute(routes[i], '/');
-} %>riot.route.start(true);
-    };
-
-    // -----------------------------------------
-    // PRIVATE FUNCTIONS
-
-    // -----------------------------------------
-
-    init();
+    // Router
+    let route = require('./modules/route/actions.js');
+    route.init();
 })();
