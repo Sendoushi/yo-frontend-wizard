@@ -4,6 +4,16 @@ import riot from 'riot';
 import { initStore } from 'baseStore.js';
 
 // -----------------------------------------
+// VARS
+
+const INITIAL_STATE = {
+    routes: null,
+    // TODO: Solve the base
+    base: '#',
+    err: null
+};
+
+// -----------------------------------------
 // FUNCTIONS
 
 /**
@@ -13,7 +23,9 @@ import { initStore } from 'baseStore.js';
  * @return {object}
  */
 let init = (state, action) => {
-    let routes = action.routes;
+    state.routes = action.routes;
+
+    let routes = state.routes;
     let routesKeys = Object.keys(routes);
     let i;
 
@@ -23,8 +35,22 @@ let init = (state, action) => {
     }
 
     // Start engines!
-    riot.route.base(action.base);
+    riot.route.base(state.base);
     riot.route.start(true);
+
+    return state;
+};
+
+/**
+ * Set routing
+ * @param  {object} state
+ * @param  {object} action
+ * @return {object}
+ */
+let setRoute = (state, action) => {
+    riot.route(action.route);
+
+    return state;
 };
 
 /**
@@ -80,8 +106,9 @@ let <%= route.name %> = (state, action) => {
 // -----------------------------------------
 // Initialize store
 
-var store = initStore({}, {
+var store = initStore(INITIAL_STATE, {
     'INIT': init,
+    'SET_ROUTE': setRoute,
 <%
     function parseRoute(route, base) {
         var routeUrl = base + route.name;

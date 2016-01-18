@@ -93,7 +93,8 @@ var initStore = (INITIAL_STATE, reducers) => {
     return {
         dispatchAction: (action) => store.dispatch(action),
         addView: addView.bind(null, store),
-        removeView: removeView.bind(null, store)
+        removeView: removeView.bind(null, store),
+        getState: store.getState
     };
 };
 

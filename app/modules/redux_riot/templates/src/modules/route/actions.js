@@ -30,16 +30,19 @@ const ROUTES = {
 // FUNCTIONS
 
 /**
+ * Set route
+ */
+var setRoute = (route) => {
+    // The dispatch of init will set the routes
+    store.dispatchAction({ type: 'SET_ROUTE', route });
+};
+
+/**
  * Init routing
  */
 var init = () => {
     // The dispatch of init will set the routes
-    store.dispatchAction({
-        type: 'INIT',
-        routes: ROUTES,
-        // TODO: Solve the base
-        base: '#'
-    });
+    store.dispatchAction({ type: 'INIT', routes: ROUTES });
 };
 
 // -----------------------------------------
@@ -49,5 +52,5 @@ export default {
     addView: addView.bind(null, store),
     removeView: removeView.bind(null, store),
 
-    init
+    init, setRoute
 };

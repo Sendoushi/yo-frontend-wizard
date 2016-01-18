@@ -44,36 +44,25 @@ module.exports = {
         // Template and copy files
         templateBase([
             'src/bootstrap.js',
-            'src/components/_assets/html/index.html'
+            'src/components/_assets/html/index.html',
+            'src/modules/example/store.js',
+            'src/modules/example/actions.js',
+            'src/modules/utils/baseStore.js',
+            'src/modules/utils/baseActions.js',
+            'src/components/utils/baseComponent.js'
         ]);
 
         // Set app modules
-        templateBase(['src/components/app.js'], ['src/components/app.js'], {
+        templateBase([
+            'src/modules/route/actions.js',
+            'src/modules/route/store.js'
+        ], {
             name: props.name,
             routeName: 'app',
             routeNameCamelcase: 'app',
             routeNameAllCamelcase: 'App',
             htmlContent: ''
         });
-
-        // Create store
-        templateBase([
-            'src/modules/example/store.js',
-            'src/modules/example/actions.js',
-            'src/modules/utils/baseStore.js',
-            'src/modules/utils/baseActions.js',
-            'src/components/utils/baseComponent.js',
-            'src/modules/route/actions.js',
-            'src/modules/route/store.js'
-        ], [
-            'src/modules/example/store.js',
-            'src/modules/example/actions.js',
-            'src/modules/utils/baseStore.js',
-            'src/modules/utils/baseActions.js',
-            'src/components/utils/baseComponent.js',
-            'src/modules/route/actions.js',
-            'src/modules/route/store.js'
-        ]);
     },
 
     /**

@@ -13,10 +13,10 @@
 
     // Mount the app
     let riot = require('riot');
-    require('./components/app.js');
+    require('components/app.js');
     riot.mount('body', 'app');
 
     // Router
-    let route = require('./modules/route/actions.js');
+    let route = require('modules/route/actions.js');
     route.init();
 })();
