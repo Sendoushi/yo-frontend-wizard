@@ -56,8 +56,12 @@ module.exports = {
         templateBase([
             'src/modules/route/actions.js',
             'src/modules/route/store.js'
+        ], [
+            'src/modules/route/actions.js',
+            'src/modules/route/store.js'
         ], {
             name: props.name,
+            routes: props.routes,
             routeName: 'app',
             routeNameCamelcase: 'app',
             routeNameAllCamelcase: 'App',

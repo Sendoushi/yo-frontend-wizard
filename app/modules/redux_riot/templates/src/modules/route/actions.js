@@ -11,9 +11,8 @@ const ROUTES = {
     function parseRoute(route, base) {
         var routeUrl = base + route.name;
 
-    %>'<%= routeUrl %>/*': () => store.dispatchAction({ type: '<%= route.name %>' }),
-
-    <%
+    %>'<% if (routeUrl.replace("index", "") !== routeUrl) { %>/<% } else { %><%= routeUrl %>/*<% } %>': () => store.dispatchAction({ type: '<%= route.name.toUpperCase() %>' }),
+<%
 
         if (route.children && route.children.length) {
             for (var i = 0; i < route.children.length; i += 1) {
@@ -24,7 +23,8 @@ const ROUTES = {
 
     for (var i = 0; i < routes.length; i += 1) {
         parseRoute(routes[i], '/');
-} %>};
+} %>
+};
 
 // -----------------------------------------
 // FUNCTIONS

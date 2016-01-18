@@ -76,12 +76,12 @@ let setLast = (state, obj) => {
 
 // -----------------------------------------
 // ROUTES FUNCTIONS
-
 <%
     function parseRoute(route, base) {
         var routeUrl = base + route.name;
 
-%>/**
+%>
+/**
  * <%= route.name %> route handler
  * @param  {object} state
  * @param  {object} action
@@ -101,8 +101,8 @@ let <%= route.name %> = (state, action) => {
 
     for (var i = 0; i < routes.length; i += 1) {
         parseRoute(routes[i], '/');
-} %>
-
+}
+%>
 // -----------------------------------------
 // Initialize store
 
@@ -110,23 +110,24 @@ var store = initStore(INITIAL_STATE, {
     'INIT': init,
     'SET_ROUTE': setRoute,
 <%
-    function parseRoute(route, base) {
+    function parseRouteObj(route, base) {
         var routeUrl = base + route.name;
 
-    %>'<%= route.name %>': <%= route.name %>,
+%>    '<%= route.name.toUpperCase() %>': <%= route.name %>,
 
     <%
 
         if (route.children && route.children.length) {
             for (var i = 0; i < route.children.length; i += 1) {
-                parseRoute(route.children[i], routeUrl);
+                parseRouteObj(route.children[i], routeUrl);
             }
         }
     }
 
     for (var i = 0; i < routes.length; i += 1) {
-        parseRoute(routes[i], '/');
-} %>});
+        parseRouteObj(routes[i], '/');
+} %>
+});
 
 // -----------------------------------------
 // EXPORT
