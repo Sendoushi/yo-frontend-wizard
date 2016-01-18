@@ -49,7 +49,8 @@ module.exports = {
             'src/modules/example/actions.js',
             'src/modules/utils/baseStore.js',
             'src/modules/utils/baseActions.js',
-            'src/components/utils/baseComponent.js'
+            'src/components/utils/baseComponent.js',
+            'src/components/app.js'
         ]);
 
         // Set app modules
