@@ -45,6 +45,8 @@ module.exports = {
         templateBase([
             'src/bootstrap.js',
             'src/components/_assets/html/index.html',
+            'src/modules/app/store.js',
+            'src/modules/app/actions.js',
             'src/modules/example/store.js',
             'src/modules/example/actions.js',
             'src/modules/utils/baseStore.js',

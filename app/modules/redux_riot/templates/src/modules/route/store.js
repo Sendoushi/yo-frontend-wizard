@@ -2,6 +2,7 @@
 
 import riot from 'riot';
 import { initStore } from 'baseStore.js';
+import appActions from 'modules/app/actions.js';
 
 // -----------------------------------------
 // VARS
@@ -88,7 +89,10 @@ let setLast = (state, obj) => {
  * @return {object}
  */
 let <%= route.name %> = (state, action) => {
-    return setLast({}, { name: '<%= route.name %>' });
+    appActions.setContent('<%= route.name.toUpperCase() %>');
+
+    // return setLast({}, { name: '<%= route.name.toUpperCase() %>' });
+    return state;
 };
     <%
 

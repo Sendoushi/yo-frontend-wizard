@@ -10,12 +10,10 @@ import store from './store.js';
 // FUNCTIONS
 
 /**
- * Example
+ * Sets content of app
  */
-var example = () => {
-    store.dispatchAction({
-        type: 'EXAMPLE'
-    });
+var setContent = (content) => {
+    store.dispatchAction({ type: 'SET_CONTENT', content });
 };
 
 // -----------------------------------------
@@ -25,5 +23,5 @@ export default {
     addView: addView.bind(null, store),
     removeView: removeView.bind(null, store),
 
-    example
+    setContent
 };
