@@ -36,8 +36,8 @@ module.exports = {
             return;
         }
 
-        // Lower everything and remove hiphenization
-        str = str.toLowerCase().replace(/-/g, ' ');
+        // Lower everything and remove hiphenization, underscores and /
+        str = str.toLowerCase().replace(/-/g, ' ').replace(/_/g, ' ').replace(/\//g, ' ');
 
         // Uppercase all
         str = str.replace(/(^|\s)([a-z])/g , function (m, p1, p2) {
@@ -51,6 +51,23 @@ module.exports = {
         if (!alsoFirst) {
             str = str[0].toLowerCase() + str.slice(1, str.length);
         }
+
+        return str;
+    },
+
+    /**
+     * Makes a const out of a route
+     * @param  {string} str
+     * @return {string}
+     */
+    constRoute: function (str) {
+        // Remove the first slash
+        if (str[0] === '/') {
+            str = str.slice(1, str.length);
+        }
+
+        // Underscorize and uppercase
+        str = str.replace(/\//g, '_').toUpperCase();
 
         return str;
     },

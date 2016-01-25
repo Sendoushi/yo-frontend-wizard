@@ -16,6 +16,11 @@ var setContent = (content) => {
     store.dispatchAction({ type: 'SET_CONTENT', content });
 };
 
+/**
+ * Gets content of app
+ */
+var getContent = () => store.getState().content;
+
 // -----------------------------------------
 // EXPORT
 
@@ -23,5 +28,5 @@ export default {
     addView: addView.bind(null, store),
     removeView: removeView.bind(null, store),
 
-    setContent
+    getContent, setContent
 };

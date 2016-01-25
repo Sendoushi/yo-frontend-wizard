@@ -31,6 +31,7 @@
     "bluebird": "~3.1.1",<% } %><% if (!!tech.foundation) { %>
     "foundation-sites": "^6.0.3",<% } %><% if (structure === "backbone_bedrock") { %>
     "Bedrock": "git+ssh://git@github.com/Sendoushi/bedrock-web.git",<% } else if (structure === "redux_riot") { %>
+    "page": "^1.6.4",
     "redux": "^3.0.4",
     "redux-thunk": "^1.0.0",
     "riot": "^2.3.1",<% } %>

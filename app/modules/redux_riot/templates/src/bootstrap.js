@@ -19,7 +19,6 @@
         riot.mount('body', 'app');
 
         // Router
-        let route = require('modules/route/actions.js');
-        route.init();
+        require('modules/route/router.js');
     });
 })();

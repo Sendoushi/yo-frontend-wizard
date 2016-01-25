@@ -2,7 +2,7 @@
 import riot from 'riot';
 import outdatedBrowser from 'outdatedbrowser.js';
 import { onUpdateComp } from 'baseComponent.js';
-import actions from 'modules/example/actions.js';
+import actions from 'modules/app/actions.js';
 
 /**
  * On mount handler
@@ -55,6 +55,7 @@ riot.tag('app',
         <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
         <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
     </div>
+    { JSON.stringify(data.content) }
     `,
 
     init

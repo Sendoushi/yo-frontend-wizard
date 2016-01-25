@@ -6,7 +6,10 @@ import { initStore } from 'baseStore.js';
 // VARS
 
 const INITIAL_STATE = {
-    content: 'index',
+    content: {
+        type: '',
+        params: {}
+    },
     err: null
 };
 
