@@ -24,35 +24,6 @@ let findRoute = (routes, type) => {
     return route;
 };
 
-/**
- * Check if same route
- * @param  {string} type
- * @param  {object} params
- * @return {boolean}
- */
-let isSameRoute = (getContent, type, params) => {
-    let content = getContent();
-
-    // Check type
-    let isType = content.type === type;
-
-    // Go through all params
-    let paramsKeys = Object.keys(params);
-    let areParams = true;
-    let key;
-
-    for (let i = 0; i < paramsKeys.length; i += 1) {
-        key = paramsKeys[i];
-
-        if (params[key] !== content.params[key]) {
-            areParams = false;
-            break;
-        }
-    }
-
-    return isType && areParams;
-};
-
 // -----------------------------------------
 // PUBLIC FUNCTIONS
 
@@ -68,12 +39,12 @@ var updateOnAction = (routes, state) => {
     if (!route) { return; }
 
     // Route to url
-    let urlParse = route.urlParse || () => route.url;
-    let url = urlParse(state.content.params);
+    let urlParse = route.urlParse;
+    let params = state.content.params;
+    let url = !!urlParse ? urlParse(params) : route.url;
 
     // Navigate to the url
-    // TODO: Shouldn't route if in route
-    page.show(url);
+    (url !== page.current) && page.show(url);
 };
 
 /**
@@ -110,10 +81,7 @@ var init = (routes, getContent) => {
         // Go through each function
         for (let c = 0; c < fns.length; c += 1) {
             // Setup the go route
-            fns[c] = (route, fn, ctx, next) => {
-                let isSame = isSameRoute(getContent, route.type, ctx.params);
-                !isSame && fn(route, ctx, next);
-            }.bind(null, route, fns[c]);
+            fns[c] = fns[c].bind(null, route);
         }
 
         // Finally set the route

@@ -16,7 +16,10 @@ let onMount = (self, opts) => {
         languagePath: ''
     });
 
-    // Add the view to be updated with the store
+    // Set update method
+    self.on('update', onUpdate.bind(null, self, opts));
+
+    // Add for the actions update
     actions.addView(self);
 };
 
@@ -42,7 +45,6 @@ let init = function (opts) {
     // Set events for the view
     this.on('mount', onMount.bind(null, this));
     this.on('unmount', onUnmount.bind(null, this));
-    this.on('update', onUpdate.bind(null, this));
 };
 
 /**
