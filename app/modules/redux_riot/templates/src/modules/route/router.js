@@ -1,5 +1,3 @@
-'use strict';
-
 import { init, setRoute, updateOnAction } from 'baseRoute.js';
 import appActions from 'modules/app/actions.js';
 import rootRoutes from './modules/root.js';

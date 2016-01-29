@@ -1,5 +1,3 @@
-'use strict';
-
 import { addView, removeView } from 'baseActions.js';
 import store from './store.js';
 
@@ -12,14 +10,14 @@ import store from './store.js';
 /**
  * Sets content of app
  */
-var setContent = (content) => {
+let setContent = (content) => {
     store.dispatchAction({ type: 'SET_CONTENT', content });
 };
 
 /**
  * Gets content of app
  */
-var getContent = () => store.getState().content;
+let getContent = () => store.getState().content;
 
 // -----------------------------------------
 // EXPORT

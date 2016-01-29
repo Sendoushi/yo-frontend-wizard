@@ -1,5 +1,3 @@
-'use strict';
-
 // -----------------------------------------
 // VARS
 
@@ -32,7 +30,5 @@ let isMobile = () => {
 // -----------------------------------------
 // EXPORT
 
-export default {
-    ie: isIe,
-    mobile: isMobile
-};
+export { isIe };
+export { isMobile };

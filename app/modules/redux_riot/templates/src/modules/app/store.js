@@ -1,5 +1,3 @@
-'use strict';
-
 import { initStore } from 'baseStore.js';
 
 // -----------------------------------------
@@ -23,18 +21,19 @@ const INITIAL_STATE = {
  * @return {object}
  */
 let setContent = (state, action) => {
+    let newState = state;
     let content = action.content;
 
     // Set content
-    state.content = content;
+    newState.content = content;
 
-    return state;
+    return newState;
 };
 
 // -----------------------------------------
 // Initialize store
 
-var store = initStore(INITIAL_STATE, {
+let store = initStore(INITIAL_STATE, {
     'SET_CONTENT': setContent
 });
 

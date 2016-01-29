@@ -1,55 +1,57 @@
-(function () {
-    'use strict';
+import { isIe, isMobile } from 'is.js';
 
-    let is = require('is.js');
-    let outdatedBrowser = require('outdatedbrowser.js');
+let outdatedBrowser = require('outdatedbrowser.js');
 
-    let Router = require('Bedrock/Router.js');
-    let states = require('config/states.js');
-    let AppController = require('structure/App/AppController.js');
+let Router = require('Bedrock/Router.js');
+let states = require('config/states.js');
+let AppController = require('structure/App/AppController.js');
 
-    // -----------------------------------------
-    // FUNCTIONS
+// -----------------------------------------
+// FUNCTIONS
 
-    /**
-     * Initialize the app
-     */
-    let init = () => {
-        let bodyEl = document.getElementById('body');
-        let classList = bodyEl.classList;
+/**
+ * Initialize the app
+ */
+let init = () => {
+    let bodyEl = document.getElementById('body');
+    let classList = bodyEl.classList;
 
-        // Remove class no-script
-        classList.remove('no-script');
+    // Remove class no-script
+    classList.remove('no-script');
 
-        is.ie() && classList.add('is-ie');
-        is.mobile() && classList.add('is-mobile');
+    if (isIe()) {
+        classList.add('is-ie');
+    }
 
-        // Set outdated browser
-        outdatedBrowser({
-            lowerThan: '<% if (minie === "edge") { %>edge<% } else { %>IE<%= minie %><% } %>',
-            languagePath: ''
-        });
+    if (isMobile()) {
+        classList.add('is-mobile');
+    }
 
-        // Initialize
-        let router = new Router(states, { trigger: true });
-        let app = new AppController(document.body);
+    // Set outdated browser
+    outdatedBrowser({
+        lowerThan: '<% if (minie === "edge") { %>edge<% } else { %>IE<%= minie %><% } %>',
+        languagePath: ''
+    });
 
-        // Router adopts the main controller
-        router.on('router#change', state => app.setState(state));
+    // Initialize
+    let router = new Router(states, { trigger: true });
+    let app = new AppController(document.body);
 
-        // Listen for app events
-        app.on('bedrockrouter:navigate', route => {
-            router.trigger('bedrockrouter:navigate', route);
-        });
+    // Router adopts the main controller
+    router.on('router#change', state => app.setState(state));
 
-        // Starts router
-        router.start();
-    };
+    // Listen for app events
+    app.on('bedrockrouter:navigate', route => {
+        router.trigger('bedrockrouter:navigate', route);
+    });
 
-    // -----------------------------------------
+    // Starts router
+    router.start();
+};
 
-    <% if (!!tech.jquery) { %>// Wait for the html to be fully ready before continuing
-    // Initialize everything
-    $(document).ready(init);<% } else { %>// Initialize everything
-    init();<% } %>
-})();
+// -----------------------------------------
+
+<% if (!!tech.jquery) { %>// Wait for the html to be fully ready before continuing
+// Initialize everything
+$(document).ready(init);<% } else { %>// Initialize everything
+init();<% } %>

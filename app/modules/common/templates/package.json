@@ -3,6 +3,7 @@
   "version": "<%= version %>",
   "devDependencies": {<% if (!!tech.babel) { %>
     "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
     "babel-runtime": "^6.3.19",<% } %><% if (structure === 'html') { %>
     "grunt-html-build": "^0.5.2",<% } %><% if (!!tech.sass) { %>
     "grunt-sass": "^1.0.0",
@@ -23,8 +24,8 @@
     "grunt": "^0.4.5",
     "grunt-contrib-copy": "^0.7.0",
     "grunt-contrib-cssmin": "^0.12.1",<% if (structure !== 'php') { %>
-    "grunt-contrib-htmlmin": "^0.6.0",<% } else { %>
-    "grunt-php": "^1.5.1",<% } %>
+    "grunt-contrib-htmlmin": "^0.6.0",} %>
+    "grunt-php": "^1.5.1",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-webpack": "^1.0.11",
     "json-loader": "^0.5.4",

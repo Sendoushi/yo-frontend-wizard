@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="app.css">
+        <link rel="stylesheet" href="/app.css">
         <meta name="application-name" content="<%= name %>"/>
         <title><%= name %></title>
     </head>
@@ -17,7 +17,7 @@
     <!-- <![endif]-->
     </body><% if (!!tech.jquery) { %>
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script><% } %>
-    <script src="app.js"></script>
+    <script src="/app.js"></script>
     <script>
         // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

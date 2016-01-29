@@ -1,5 +1,3 @@
-'use strict';
-
 import page from 'page/page.js';
 
 // -----------------------------------------
@@ -12,9 +10,10 @@ import page from 'page/page.js';
  */
 let findRoute = (routes, type) => {
     let route;
+    let i;
 
     // Find the right route
-    for (let i = 0; i < routes.length; i += 1) {
+    for (i = 0; i < routes.length; i += 1) {
         route = routes[i];
         route = (route.type === type) ? route : null;
 
@@ -32,19 +31,26 @@ let findRoute = (routes, type) => {
  * @param  {object} state
  * @param  {object} action
  */
-var updateOnAction = (routes, state) => {
+let updateOnAction = (routes, state) => {
+    let urlParse;
+    let params;
+    let route;
+    let url;
+
     if (!state || !state.content) { return; }
 
-    let route = findRoute(routes, state.content.type);
+    route = findRoute(routes, state.content.type);
     if (!route) { return; }
 
     // Route to url
-    let urlParse = route.urlParse;
-    let params = state.content.params;
-    let url = !!urlParse ? urlParse(params) : route.url;
+    urlParse = route.urlParse;
+    params = state.content.params;
+    url = !!urlParse ? urlParse(params) : route.url;
 
     // Navigate to the url
-    (url !== page.current) && page.show(url);
+    if (url !== page.current) {
+        page.show(url);
+    }
 };
 
 /**
@@ -54,13 +60,17 @@ var updateOnAction = (routes, state) => {
  * @param  {string} type
  * @param  {object} params
  */
-var setRoute = (routes, route) => {
+let setRoute = (routes, route) => {
     let routeFound = findRoute(routes, route.type);
+    let urlParse;
 
     if (!routeFound) { return; }
 
     // Get the routeFound to url
-    let urlParse = routeFound.urlParse || () => routeFound.url;
+    urlParse = routeFound.urlParse || function () {
+        return routeFound.url;
+    };
+
     return urlParse(route.params);
 };
 
@@ -69,17 +79,22 @@ var setRoute = (routes, route) => {
  * @param  {array} routes
  * @param  {string} base
  */
-var init = (routes, getContent) => {
+let init = (routes) => {
+    let route;
+    let fns;
+    let i;
+    let c;
+
     // Set all routes
-    for (let i = 0; i < routes.length; i += 1) {
-        let route = routes[i];
-        let fns = route.onRoute;
+    for (i = 0; i < routes.length; i += 1) {
+        route = routes[i];
+        fns = route.onRoute;
 
         // Force the array to exist
         fns = (typeof fns === 'function') ? [fns] : fns;
 
         // Go through each function
-        for (let c = 0; c < fns.length; c += 1) {
+        for (c = 0; c < fns.length; c += 1) {
             // Setup the go route
             fns[c] = fns[c].bind(null, route);
         }

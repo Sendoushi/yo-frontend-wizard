@@ -35,6 +35,7 @@ module.exports = {
             '.editorconfig',
             '.gitignore',
             '.eslintrc.json',
+            '.eslintignore',
             'package.json',
             'README.md'
         ]);

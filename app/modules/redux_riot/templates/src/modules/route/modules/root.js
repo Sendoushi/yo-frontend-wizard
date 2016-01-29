@@ -1,5 +1,3 @@
-'use strict';
-
 import appActions from 'modules/app/actions.js';
 
 // -----------------------------------------
@@ -18,7 +16,21 @@ for (var i = 0; i < routes.length; i += 1) {
 let <%= routeParsed.routeCamelcase %> = {
     'type': '<%= routeParsed.routeConst %>',
     'url': '<%= routeParsed.routeUrl %>',
-    'onRoute': (route, ctx, next) => {
+    /**
+     * Url parsing
+     * @param  {object} params
+     * @return {string}
+     */
+    /*'urlParse': (params) => {
+        return '/example/' + params.id;
+    },*/
+    /**
+     * Route handler
+     * @param  {object} route
+     * @param  {object} ctx
+     * @param  {function} next
+     */
+    'onRoute': (route, ctx) => {
         let params = ctx.params;
         let type = route.type;
 

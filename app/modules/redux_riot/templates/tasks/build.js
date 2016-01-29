@@ -1,13 +1,14 @@
+/* eslint-disable strict, no-var */
+'use strict';
+
 require('./utils/babel'); // Setup babel
 
 module.exports = function (grunt) {
-    'use strict';
-
-    var isProd = process.argv[1] === 'prod';
-    var fs = require('fs');
-    var rm = require('rimraf');
-    var webpack = require('webpack');
-    var mapping = require('../config/mapping.js');
+    const isProd = process.argv[1] === 'prod';
+    const fs = require('fs');
+    const rm = require('rimraf');
+    const webpack = require('webpack');
+    const mapping = require('../config/mapping.js');
 
     // Load all grunt tasks in node_modules
     grunt.file.expand('../node_modules/grunt-*/tasks').forEach(grunt.loadTasks);
@@ -50,9 +51,8 @@ module.exports = function (grunt) {
                     loaders: [{
                         test: /\.js?$/,
                         loader: 'babel',
-                        query: !isProd && {
-                            optional: ['runtime'],
-                            stage: 0
+                        query: {
+                            presets: ['es2015']
                         }
                     }, {
                         test: /\.json?$/,
@@ -133,7 +133,7 @@ module.exports = function (grunt) {
         copy: {
             main: {
                 files: [
-                    { expand: true, cwd: '../src/components/_assets/html', src: ['index.html'], dest: '../build/' },
+                    { expand: true, cwd: '../src/components/_assets/html', src: ['index.php'], dest: '../build/' },
                     { expand: true, cwd: '../src/components', src: ['**/_assets/**/*.svg'], dest: '../build/components/' },
                     { expand: true, cwd: '../src/components', src: ['**/_assets/**/*.png'], dest: '../build/components/' },
                     { expand: true, cwd: '../src/components', src: ['**/_assets/**/*.gif'], dest: '../build/components/' },
@@ -175,14 +175,19 @@ module.exports = function (grunt) {
 
     // Remove old files
     grunt.registerTask('remove_old_files', 'Remove old files', function () {
-        var done = this.async();
+        let done = this.async();
         rm('../build/*', done);
     });
 
     // Clean temporaries done for the build
     grunt.registerTask('clean_build', 'Clean temporaries', function () {
-        fs.existsSync('../build/app.scss') && fs.unlinkSync('../build/app.scss');
-        fs.existsSync('../build/app.css.diff') && fs.unlinkSync('../build/app.css.diff');
+        if (fs.existsSync('../build/app.scss')) {
+            fs.unlinkSync('../build/app.scss');
+        }
+
+        if (fs.existsSync('../build/app.css.diff')) {
+            fs.unlinkSync('../build/app.css.diff');
+        }
     });
 
     // The task...
@@ -195,3 +200,4 @@ module.exports = function (grunt) {
           'clean_build']
    );
 };
+/* eslint-enable strict, no-var */

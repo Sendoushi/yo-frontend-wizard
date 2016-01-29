@@ -1,24 +1,26 @@
-(function () {
-    'use strict';
+import { isIe, isMobile } from 'is.js';
+import riot from 'riot';
+import 'components/app.js';
 
-    // Wait for the document to be ready
-    document.addEventListener('DOMContentLoaded', function () {
-        let bodyEl = document.getElementById('body');
-        let classList = bodyEl.classList;
+// Wait for the document to be ready
+document.addEventListener('DOMContentLoaded', function () {
+    let bodyEl = document.getElementById('body');
+    let classList = bodyEl.classList;
 
-        // Remove class no-script
-        classList.remove('no-script');
+    // Remove class no-script
+    classList.remove('no-script');
 
-        let is = require('is.js');
-        is.ie() && classList.add('is-ie');
-        is.mobile() && classList.add('is-mobile');
+    if (isIe()) {
+        classList.add('is-ie');
+    }
 
-        // Mount the app
-        let riot = require('riot');
-        require('components/app.js');
-        riot.mount('body', 'app');
+    if (isMobile()) {
+        classList.add('is-mobile');
+    }
 
-        // Router
-        require('modules/route/router.js');
-    });
-})();
+    // Mount the app
+    riot.mount('body', 'app');
+
+    // Router
+    require('modules/route/router.js');
+});
