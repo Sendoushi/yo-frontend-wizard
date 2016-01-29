@@ -1,4 +1,8 @@
-/*jshint node:true, es3:false, latedef:false*/
+/* eslint-disable strict, no-var */
+'use strict';
+
+require('./utils/babel'); // Setup babel
+
 module.exports = function (grunt) {
     'use strict';
 
@@ -49,9 +53,8 @@ module.exports = function (grunt) {
                     loaders: [{
                         test: /\.js?$/,
                         loader: 'babel',
-                        query: !isProd && {
-                            optional: ['runtime'],
-                            stage: 0
+                        query: {
+                            presets: ['es2015']
                         }
                     }, {
                         test: /\.json?$/,
@@ -199,17 +202,23 @@ module.exports = function (grunt) {
 
     // Clean temporaries done for the build
     grunt.registerTask('clean_build', 'Clean temporaries', function () {
-        fs.existsSync('../build/app.scss') && fs.unlinkSync('../build/app.scss');
-        fs.existsSync('../build/app.css.diff') && fs.unlinkSync('../build/app.css.diff');
+        if (fs.existsSync('../build/app.scss')) {
+            fs.unlinkSync('../build/app.scss');
+        }
+
+        if (fs.existsSync('../build/app.css.diff')) {
+            fs.unlinkSync('../build/app.css.diff');
+        }
     });
 
     // The task...
     grunt.registerTask('build',
-       isProd ? ['remove_old_files', 'webpack',<% if (!!tech.sass) { %> 'sass_globbing', 'sass',<% } %><% if (!!tech.autoprefixer) { %> 'autoprefixer',<% } %>
-                 <% if (!!tech.rem) { %>'pixrem', <% } %>'cssmin', 'uglify', 'copy', <% if (!!tech.svg) { %>'svgmin', <% } %>'htmlbuild', 'htmlmin',
+       isProd ? ['remove_old_files', 'webpack', 'sass_globbing', 'sass', 'autoprefixer',
+                 'pixrem', 'cssmin', 'uglify', 'copy', 'svgmin', 'htmlbuild', 'htmlmin',
                  'clean_build']
-       : ['remove_old_files', 'webpack',<% if (!!tech.sass) { %> 'sass_globbing', 'sass',<% } %>
+       : ['remove_old_files', 'webpack', 'sass_globbing', 'sass',
           'copy', 'htmlbuild',
           'clean_build']
    );
 };
+/* eslint-enable strict, no-var */

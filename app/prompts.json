@@ -41,16 +41,8 @@
     "type": "checkbox",
     "message": "Technologies",
     "choices": [{
-        "value": "babel",
-        "name": "Babel",
-        "checked": true
-    }, {
         "value": "promises",
         "name": "Promises",
-        "checked": true
-    }, {
-        "value": "sass",
-        "name": "Sass",
         "checked": true
     }, {
         "value": "normalizer",

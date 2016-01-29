@@ -1,7 +1,4 @@
-/*jshint node:true, es3:false, latedef:false*/
 module.exports = function (grunt) {
-    'use strict';
-
     var path = require('path');
 
     // Load all grunt tasks in node_modules

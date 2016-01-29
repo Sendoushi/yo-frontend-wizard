@@ -4,11 +4,11 @@
 require('./utils/babel'); // Setup babel
 
 module.exports = function (grunt) {
-    const isProd = process.argv[1] === 'prod';
-    const fs = require('fs');
-    const rm = require('rimraf');
-    const webpack = require('webpack');
-    const mapping = require('../config/mapping.js');
+    var isProd = process.argv[1] === 'prod';
+    var fs = require('fs');
+    var rm = require('rimraf');
+    var webpack = require('webpack');
+    var mapping = require('../config/mapping.js');
 
     // Load all grunt tasks in node_modules
     grunt.file.expand('../node_modules/grunt-*/tasks').forEach(grunt.loadTasks);
@@ -175,7 +175,7 @@ module.exports = function (grunt) {
 
     // Remove old files
     grunt.registerTask('remove_old_files', 'Remove old files', function () {
-        let done = this.async();
+        var done = this.async();
         rm('../build/*', done);
     });
 
@@ -192,10 +192,10 @@ module.exports = function (grunt) {
 
     // The task...
     grunt.registerTask('build',
-       isProd ? ['remove_old_files', 'webpack',<% if (!!tech.sass) { %> 'sass_globbing', 'sass',<% } %><% if (!!tech.autoprefixer) { %> 'autoprefixer',<% } %>
-                 <% if (!!tech.rem) { %>'pixrem', <% } %>'cssmin', 'uglify', 'copy', <% if (!!tech.svg) { %>'svgmin',<% } %>
+       isProd ? ['remove_old_files', 'webpack', 'sass_globbing', 'sass', 'autoprefixer',
+                 'pixrem', 'cssmin', 'uglify', 'copy', 'svgmin',
                  'clean_build']
-       : ['remove_old_files', 'webpack',<% if (!!tech.sass) { %> 'sass_globbing', 'sass',<% } %>
+       : ['remove_old_files', 'webpack', 'sass_globbing', 'sass',
           'copy',
           'clean_build']
    );
