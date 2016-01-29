@@ -72,7 +72,10 @@ module.exports = function (grunt) {
                 },
                 plugins: isProd && [<% if (!!tech.jquery) { %>
                     new webpack.IgnorePlugin(new RegExp('^(jquery|react)$')),<% } %>
-                    new webpack.optimize.DedupePlugin()
+                    new webpack.optimize.DedupePlugin(),
+                    new webpack.DefinePlugin({
+                        'process.env.NODE_ENV': '"production"'
+                    })
                 ]
             }
         },
