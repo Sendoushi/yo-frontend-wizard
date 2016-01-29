@@ -16,7 +16,7 @@
     "babel-eslint": "^4.1.6",
     "eslint": "^1.10.3",
     "eslint-config-defaults": "^8.0.2",
-    "eslint-config-sds": "git+ssh://git@github.com/Sendoushi/eslint-config-sds.git",
+    "eslint-config-sds": "git+https://git@github.com/Sendoushi/eslint-config-sds.git",
     "eslint-plugin-react": "^3.16.1",
     "grunt": "^0.4.5",
     "grunt-contrib-copy": "^0.7.0",
@@ -35,7 +35,7 @@
     "jquery": "~2.1.4",<% } %><% if (!!tech.promises) { %>
     "bluebird": "~3.1.1",<% } %><% if (!!tech.foundation) { %>
     "foundation-sites": "^6.0.3",<% } %><% if (structure === "backbone_bedrock") { %>
-    "Bedrock": "git+ssh://git@github.com/Sendoushi/bedrock-web.git",<% } else if (structure === "redux_riot") { %>
+    "Bedrock": "git+https://git@github.com/Sendoushi/bedrock-web.git",<% } else if (structure === "redux_riot") { %>
     "page": "^1.6.4",
     "redux": "^3.0.4",
     "redux-thunk": "^1.0.0",

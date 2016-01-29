@@ -11,7 +11,7 @@
     "babel-eslint": "^4.1.6",
     "eslint": "^1.10.3",
     "eslint-config-defaults": "^8.0.2",
-    "eslint-config-sds": "git+ssh://git@github.com/Sendoushi/eslint-config-sds.git",
+    "eslint-config-sds": "git+https://git@github.com/Sendoushi/eslint-config-sds.git",
     "eslint-plugin-react": "^3.16.1"
   },
   "dependencies": {
