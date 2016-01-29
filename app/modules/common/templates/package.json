@@ -50,7 +50,7 @@
     "test": "npm run eslint-test",
     "eslint": "./node_modules/eslint/bin/eslint.js",
     "eslint-test": "npm run eslint -- ./src/* ./tasks/* ./config/*",
-    "build": "node -e \"require('grunt').tasks(['build'], { gruntfile: require('path').join(process.cwd(), 'tasks/build.js') })\"; npm run eslint-test",
+    "build": "npm run eslint-test; node -e \"require('grunt').tasks(['build'], { gruntfile: require('path').join(process.cwd(), 'tasks/build.js') })\"",
     "server": "node -e \"require('grunt').tasks(['server'], { gruntfile: require('path').join(process.cwd(), 'tasks/server.js') })\"",
     "start": "npm run server"
   }
