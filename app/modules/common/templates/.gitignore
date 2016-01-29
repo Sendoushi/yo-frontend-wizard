@@ -1,5 +1,46 @@
-.DS_Store
-/node_modules
-npm-debug.log
+# --------------------
+# Project Files
+# --------------------
 build/*
 !build/.gitkeep
+
+# --------------------
+# OSX Files
+# --------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+npm-debug.log*
+
+# --------------------
+# Sublime Text Files
+# --------------------
+*.sublime-project
+*.sublime-workspace
+
+# --------------------
+# IntelliJ Files
+# --------------------
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+
+# --------------------
+# Eclipse Files
+# --------------------
+.project
+.metadata
+*.bak
+.classpath
+.settings
+
+# --------------------
+# App Files
+# --------------------
+node_modules
