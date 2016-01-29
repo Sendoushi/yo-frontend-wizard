@@ -14,7 +14,9 @@ var path = require('path');
  * @param   {array} folders
  */
 module.exports = function (props, folders) {
-    for (var i = 0; i < folders.length; i += 1) {
+    var i;
+
+    for (i = 0; i < folders.length; i += 1) {
         this.mkdir(folders[i]);
         this.copy('common/templates/.gitkeep', path.join(folders[i], '.gitkeep'));
     }

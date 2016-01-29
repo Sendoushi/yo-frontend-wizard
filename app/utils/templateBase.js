@@ -17,15 +17,14 @@ var path = require('path');
  * @param   {object} data
  */
 module.exports = function (props, srcPath, filesIn, filesOut, data) {
-    srcPath = path.join(this.sourceRoot(), srcPath);
-    filesOut = filesOut || filesIn;
-    data = data || props;
-
+    var newSrcPath = path.join(this.sourceRoot(), srcPath);
+    var newFilesOut = filesOut || filesIn;
+    var newData = data || props;
     var template;
     var i;
 
-    for (i = 0; i < filesOut.length; i += 1) {
-        template = path.join(srcPath, (filesIn[i] || filesIn[0]));
-        this.template(template, filesOut[i], data);
+    for (i = 0; i < newFilesOut.length; i += 1) {
+        template = path.join(newSrcPath, (filesIn[i] || filesIn[0]));
+        this.template(template, newFilesOut[i], newData);
     }
 };

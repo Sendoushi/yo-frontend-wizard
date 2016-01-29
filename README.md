@@ -13,4 +13,5 @@ Do not forget to complete the README.
 
 ## Development
 
+- `npm install`
 - `npm link`

@@ -24,8 +24,10 @@ module.exports = generators.Base.extend({
         this.pkg = require('../package.json');
 
         this.on('end', function () {
+            var toExec;
+
             if (!this.options['skip-install']) {
-                var toExec = 'git init; npm install';
+                toExec = 'git init; npm install';
 
                 if (!!this.props.tech.bower) {
                     toExec += '; bower install';
@@ -59,13 +61,15 @@ module.exports = generators.Base.extend({
 
         // Finally prompt!
         this.prompt(promptsJson, function (props) {
+            var newProps = props;
+
             // Objectify tech
-            props.tech = this._objectifyArr(props.tech);
+            newProps.tech = this._objectifyArr(newProps.tech);
 
             // Take care of routes
-            props.routes = this._parseRoute(props.routes);
+            newProps.routes = this._parseRoute(newProps.routes);
 
-            this.props = props;
+            this.props = newProps;
             done();
         }.bind(this));
     },
@@ -75,22 +79,27 @@ module.exports = generators.Base.extend({
      * @method writing
      */
     writing: function () {
+        var props;
+        var common;
+        var structure;
+        var specific;
+
         // Set initial source in modules
         this.sourceRoot(path.join(this.sourceRoot(), '../modules'));
 
-        var props = this.props;
+        props = this.props;
 
         // Take care of common
-        var common = require('./modules/common/index.js');
+        common = require('./modules/common/index.js');
         common.init(this, props);
 
         // Take care of specific
-        var structure = props.structure;
+        structure = props.structure;
         if (structure === 'none') {
             return;
         }
 
-        var specific = require('./modules/' + structure + '/index.js');
+        specific = require('./modules/' + structure + '/index.js');
         specific.init(this, props);
     },
 
@@ -123,11 +132,13 @@ module.exports = generators.Base.extend({
      * @private
      */
     _parseRoute: function (str) {
+        var routes;
+
         this._hierarchyRoutes = this._hierarchyRoutes.bind(this);
         this._objectifyRoutes = this._objectifyRoutes.bind(this);
 
         // First, we split the pages
-        var routes = str.replace(/ /g, '').split(',');
+        routes = str.replace(/ /g, '').split(',');
 
         // Split hierarchy into arrays
         routes = this._hierarchyRoutes(routes);
@@ -151,7 +162,9 @@ module.exports = generators.Base.extend({
         // Split hierarchy into arrays
         for (i = 0; i < arr.length; i += 1) {
             // We need to create a new hierarchy
-            (arr[i][0] !== '-') && hierarchy.push([]);
+            if (arr[i][0] !== '-') {
+                hierarchy.push([]);
+            }
 
             // Add the route to hierarchy
             hierarchy[hierarchy.length - 1].push(arr[i]);
@@ -171,13 +184,17 @@ module.exports = generators.Base.extend({
      * @private
      */
     _objectifyRoutes: function (arr) {
+        var children;
+
         if (!arr || !arr.length) {
             return;
         }
 
-        var children = arr.map(function (child) {
+        children = arr.map(function (child) {
             return (child[0] === '-') && child.slice(1, child.length);
-        }).filter(function (child) { return !!child; });
+        }).filter(function (child) {
+            return !!child;
+        });
 
         return {
             name: string.dashize(arr[0]),

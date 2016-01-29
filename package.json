@@ -1,10 +1,19 @@
 {
   "name": "generator-frontend-wizard",
   "version": "0.0.1",
-  "description": "",
-  "keywords": [
-    "yeoman-generator"
-  ],
+  "description": "Generator for frontend",
+  "keywords": [ "yeoman-generator" ],
+  "scripts": {
+    "eslint": "./node_modules/eslint/bin/eslint.js",
+    "eslint-test": "npm run eslint -- ./app/index.js ./app/utils/*"
+  },
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "eslint": "^1.10.3",
+    "eslint-config-defaults": "^8.0.2",
+    "eslint-config-sds": "git+ssh://git@github.com/Sendoushi/eslint-config-sds.git",
+    "eslint-plugin-react": "^3.16.1"
+  },
   "dependencies": {
     "yeoman-generator": "^0.22.1"
   }

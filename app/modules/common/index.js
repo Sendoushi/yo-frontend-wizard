@@ -34,8 +34,7 @@ module.exports = {
         templateBase([
            '.editorconfig',
            '.gitignore',
-           '.jscsrc',
-           '.jshintrc',
+           '.eslintrc.json',
            'package.json',
            'README.md'
         ]);

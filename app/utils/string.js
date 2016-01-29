@@ -17,9 +17,9 @@ module.exports = {
      * @return  {string}
      */
     dashize: function (str) {
-        str = this._redo(str);
+        var newStr = this._redo(str);
 
-        return str.toLowerCase().replace(/ /g, '-');
+        return newStr.toLowerCase().replace(/ /g, '-');
     },
 
     /**
@@ -30,29 +30,29 @@ module.exports = {
      * @return  {string}
      */
     camelcase: function (str, alsoFirst) {
-        str = this._redo(str);
+        var newStr = this._redo(str);
 
-        if (!str) {
+        if (!newStr) {
             return;
         }
 
         // Lower everything and remove hiphenization, underscores and /
-        str = str.toLowerCase().replace(/-/g, ' ').replace(/_/g, ' ').replace(/\//g, ' ');
+        newStr = newStr.toLowerCase().replace(/-/g, ' ').replace(/_/g, ' ').replace(/\//g, ' ');
 
         // Uppercase all
-        str = str.replace(/(^|\s)([a-z])/g , function (m, p1, p2) {
+        newStr = newStr.replace(/(^|\s)([a-z])/g, function (m, p1, p2) {
             return p1 + p2.toUpperCase();
         });
 
         // Remove spaces
-        str = str.replace(/ /g, '');
+        newStr = newStr.replace(/ /g, '');
 
         // First shouldn't be camel case
         if (!alsoFirst) {
-            str = str[0].toLowerCase() + str.slice(1, str.length);
+            newStr = newStr[0].toLowerCase() + newStr.slice(1, newStr.length);
         }
 
-        return str;
+        return newStr;
     },
 
     /**
@@ -61,15 +61,17 @@ module.exports = {
      * @return {string}
      */
     constRoute: function (str) {
+        var newStr = str;
+
         // Remove the first slash
-        if (str[0] === '/') {
-            str = str.slice(1, str.length);
+        if (newStr[0] === '/') {
+            newStr = newStr.slice(1, newStr.length);
         }
 
         // Underscorize and uppercase
-        str = str.replace(/\//g, '_').toUpperCase();
+        newStr = newStr.replace(/\//g, '_').toUpperCase();
 
-        return str;
+        return newStr;
     },
 
     // -----------------------------------------
