@@ -43,7 +43,7 @@ module.exports = {
      * @param   {object} props
      * @private
      */
-    _setSource: function (props) {
+    _setSource: function () {
         createFolders(['src/scripts']);
 
         // Template and copy files
@@ -74,19 +74,20 @@ module.exports = {
      * @private
      */
     _setRoutes: function (props, base) {
+        var template;
+        var assetsArr;
+        var routePath;
         var routes;
+        var route;
+        var i;
 
         if (!!props && typeof props === 'object') {
             routes = props.length && props || props.routes;
         }
 
         routes = routes || [];
-
-        var template = 'src/modules/structure.html';
-        var assetsArr = [];
-        var routePath;
-        var route;
-        var i;
+        template = 'src/modules/structure.html';
+        assetsArr = [];
 
         // Go through each route
         for (i = 0; i < routes.length; i += 1) {
@@ -115,4 +116,4 @@ module.exports = {
         // Now create assets
         createAssets(assetsArr);
     }
-}
+};

@@ -2,8 +2,8 @@
   "name": "<%= name %>",
   "version": "<%= version %>",
   "devDependencies": {<% if (!!tech.babel) { %>
-    "babel-loader": "^5.3.2",
-    "babel-runtime": "^5.8.29",<% } %><% if (structure === 'html') { %>
+    "babel-loader": "^6.2.1",
+    "babel-runtime": "^6.3.19",<% } %><% if (structure === 'html') { %>
     "grunt-html-build": "^0.5.2",<% } %><% if (!!tech.sass) { %>
     "grunt-sass": "^1.0.0",
     "grunt-sass-globbing": "^1.4.0",
@@ -13,7 +13,9 @@
     "grunt-pixrem": "^0.1.2",
     "grunt-svgmin": "^3.1.0",
     "express": "^4.13.3",
+    "babel-core": "^6.4.5",
     "babel-eslint": "^4.1.6",
+    "babel-plugin-transform-runtime": "^6.4.3",
     "eslint": "^1.10.3",
     "eslint-config-defaults": "^8.0.2",
     "eslint-config-sds": "git+https://git@github.com/Sendoushi/eslint-config-sds.git",
@@ -44,7 +46,7 @@
     "outdated-browser": "~1.0.2"
   },<% } %>
   "scripts": {
-    "test": "# TODO",
+    "test": "npm run eslint-test",
     "eslint": "./node_modules/eslint/bin/eslint.js",
     "eslint-test": "npm run eslint -- ./src/* ./tasks/* ./config/*",
     "build": "node -e \"require('grunt').tasks(['build'], { gruntfile: require('path').join(process.cwd(), 'tasks/build.js') })\"; npm run eslint-test",

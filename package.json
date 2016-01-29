@@ -5,9 +5,11 @@
   "keywords": [ "yeoman-generator" ],
   "scripts": {
     "eslint": "./node_modules/eslint/bin/eslint.js",
-    "eslint-test": "npm run eslint -- ./app/index.js ./app/utils/*"
+    "eslint-test": "npm run eslint -- ./app/index.js ./app/utils/* ./app/modules/*/index.js"
   },
   "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-runtime": "^6.3.19",
     "babel-eslint": "^4.1.6",
     "eslint": "^1.10.3",
     "eslint-config-defaults": "^8.0.2",

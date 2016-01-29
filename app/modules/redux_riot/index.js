@@ -3,7 +3,7 @@
 // -----------------------------------------
 // VARS
 
-var path = require('path');
+// var path = require('path');
 var string = require('../../utils/string.js');
 var templateBase = require('../../utils/templateBase.js');
 var createFolders = require('../../utils/createFolders.js');
@@ -23,16 +23,18 @@ module.exports = {
      * @param  {object} props
      */
     init: function (yo, props) {
-        templateBase = templateBase.bind(yo, props, '/redux_riot/templates');
-        createFolders = createFolders.bind(yo, props);
-        createAssets = createAssets.bind(yo, props);
+        var newProps = props;
+
+        templateBase = templateBase.bind(yo, newProps, '/redux_riot/templates');
+        createFolders = createFolders.bind(yo, newProps);
+        createAssets = createAssets.bind(yo, newProps);
 
         // Set routes
-        props.routes = this._modifyRoutes(props.routes);
+        newProps.routes = this._modifyRoutes(newProps.routes);
 
         // Sets dirs
-        this._setSource(props);
-        this._setTasks(props);
+        this._setSource(newProps);
+        this._setTasks(newProps);
     },
 
     // -----------------------------------------
@@ -81,7 +83,11 @@ module.exports = {
      * @private
      */
     _setTasks: function () {
-        templateBase(['tasks/build.js', 'tasks/server.js']);
+        templateBase([
+            'tasks/build.js',
+            'tasks/server.js',
+            'tasks/utils/babel.js'
+        ]);
     },
 
     /**
@@ -90,30 +96,34 @@ module.exports = {
      * @return {array}
      */
     _modifyRoutes: function (routes) {
+        var newRoutes = routes;
         var routesParsed = [];
+        var i;
 
         // Parse routes to have all the required data
         function parseRoute(route, base) {
-            var routeUrl = base + route.name;
+            var newRoute = route;
+            var routeUrl = base + newRoute.name;
             var routeCamelcase = string.camelcase(routeUrl);
             var routeConst = string.constRoute(routeUrl);
+            var c;
 
             if (route.name.toLowerCase() === 'index') {
                 routeUrl = '/';
             }
 
             // Set new data
-            route.routeUrl = routeUrl;
-            route.routeCamelcase = routeCamelcase;
-            route.routeConst = routeConst;
+            newRoute.routeUrl = routeUrl;
+            newRoute.routeCamelcase = routeCamelcase;
+            newRoute.routeConst = routeConst;
 
             // Flatten the routes
-            routesParsed.push(route);
+            routesParsed.push(newRoute);
 
             // Go through all the children
-            if (route.children && route.children.length) {
-                for (var i = 0; i < route.children.length; i += 1) {
-                    route.children[i] = parseRoute(route.children[i], routeUrl + '/');
+            if (newRoute.children && newRoute.children.length) {
+                for (c = 0; c < newRoute.children.length; c += 1) {
+                    newRoute.children[c] = parseRoute(newRoute.children[i], routeUrl + '/');
                 }
             }
 
@@ -121,8 +131,8 @@ module.exports = {
         }
 
         // Go through each route
-        for (var i = 0; i < routes.length; i += 1) {
-            routes[i] = parseRoute(routes[i], '/');
+        for (i = 0; i < newRoutes.length; i += 1) {
+            newRoutes[i] = parseRoute(newRoutes[i], '/');
         }
 
         return routesParsed;

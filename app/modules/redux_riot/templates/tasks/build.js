@@ -1,4 +1,5 @@
-/*jshint node:true, es3:false, latedef:false*/
+require('./utils/babel'); // Setup babel
+
 module.exports = function (grunt) {
     'use strict';
 

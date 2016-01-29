@@ -65,7 +65,7 @@ module.exports = {
      * @param   {object} props
      * @private
      */
-    _setSource: function (props) {
+    _setSource: function () {
         // Template and copy files
         templateBase([
             'src/bootstrap.js',
@@ -90,21 +90,24 @@ module.exports = {
      * @private
      */
     _setRoutes: function (props, base) {
+        var templateView;
+        var templateController;
+        var templateHtml;
+        var assetsArr;
+        var routePath;
         var routes;
+        var route;
+        var i;
 
         if (!!props && typeof props === 'object') {
             routes = props.length && props || props.routes;
         }
 
         routes = routes || [];
-
-        var templateView = 'src/modules/view.js';
-        var templateController = 'src/modules/controller.js';
-        var templateHtml = 'src/modules/structure.html';
-        var assetsArr = [];
-        var routePath;
-        var route;
-        var i;
+        templateView = 'src/modules/view.js';
+        templateController = 'src/modules/controller.js';
+        templateHtml = 'src/modules/structure.html';
+        assetsArr = [];
 
         // Go through each route
         for (i = 0; i < routes.length; i += 1) {

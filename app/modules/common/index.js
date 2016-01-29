@@ -32,15 +32,17 @@ module.exports = {
 
         // Templates files in the root
         templateBase([
-           '.editorconfig',
-           '.gitignore',
-           '.eslintrc.json',
-           'package.json',
-           'README.md'
+            '.editorconfig',
+            '.gitignore',
+            '.eslintrc.json',
+            'package.json',
+            'README.md'
         ]);
 
         // Specific templating
-        !!props.tech.bower && templateBase(['bower.json']);
+        if (!!props.tech.bower) {
+            templateBase(['bower.json']);
+        }
     },
 
     // -----------------------------------------
