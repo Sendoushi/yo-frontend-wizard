@@ -1,5 +1,5 @@
 import riot from 'riot';
-import { onUpdateComp } from 'baseComponent.js';
+import { updateState } from 'baseComponent.js';
 import outdatedBrowser from 'outdatedbrowser.js';
 import actions from 'modules/app/actions.js';
 
@@ -9,7 +9,14 @@ import actions from 'modules/app/actions.js';
  * @param  {*} opts
  * @param  {object} state
  */
-let onUpdate = (self, opts, state) => onUpdateComp(self, state);
+let onUpdate = (self, opts, state) => {
+    let newState = updateState(self.state, state);
+
+    /* eslint-disable no-param-reassign */
+    // Cache values
+    self.state = newState || self.state;
+    /* eslint-enable no-param-reassign*/
+};
 
 /**
  * On mount handler
@@ -59,7 +66,7 @@ riot.tag('app',
         <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
         <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
     </div>
-    { JSON.stringify(data.content) }
+    { JSON.stringify(state.content) }
     `,
 
     init

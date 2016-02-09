@@ -4,11 +4,12 @@ import { initStore } from 'baseStore.js';
 // VARS
 
 const INITIAL_STATE = {
-    content: {
-        type: '',
-        params: {}
-    },
-    err: null
+    data: {
+        content: {
+            type: '',
+            params: {}
+        }
+    }
 };
 
 // -----------------------------------------
@@ -25,7 +26,7 @@ let setContent = (state, action) => {
     let content = action.content;
 
     // Set content
-    newState.content = content;
+    newState.data.content = content;
 
     return newState;
 };

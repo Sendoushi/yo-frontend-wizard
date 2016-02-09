@@ -1,4 +1,7 @@
-import mixIn from 'mout/object/mixIn.js';
+import deepMixIn from 'mout/object/deepMixIn.js';
+import deepClone from 'mout/lang/deepClone.js';
+import deepFillIn from 'mout/object/deepFillIn.js';
+import deepEquals from 'mout/lang/deepEquals.js';
 
 // -----------------------------------------
 // VARS
@@ -7,20 +10,23 @@ import mixIn from 'mout/object/mixIn.js';
 // FUNCTIONS
 
 /**
- * Adds view to the actions
- * @param  {store} store
- * @param  {tag} view
+ * Updates state of component
+ * @param  {object} stateToUpd
+ * @param  {object} state
+ * @param  {object} filler
  */
-let onUpdateComp = (self, state) => {
-    if (!state) { return; }
+let updateState = (stateToUpd, state, filler) => {
+    let stateToBe = deepClone(state);
+    let equals = deepEquals(stateToUpd, stateToBe);
+    let newState = deepMixIn({}, stateToUpd, !equals && stateToBe);
 
-    /* eslint-disable no-param-reassign */
-    // Create the data object
-    self.data = mixIn({}, self.data, state);
-    /* eslint-enable no-param-reassign*/
+    // Fill in with the filler
+    newState = !!filler ? deepFillIn(newState, filler) : newState;
+
+    return !equals ? newState : null;
 };
 
 // -----------------------------------------
 // EXPORT
 
-export { onUpdateComp };
+export { updateState };
