@@ -41,14 +41,6 @@
     "type": "checkbox",
     "message": "Technologies",
     "choices": [{
-        "value": "promises",
-        "name": "Promises",
-        "checked": true
-    }, {
-        "value": "normalizer",
-        "name": "Normalizer",
-        "checked": true
-    }, {
         "value": "sdk",
         "name": "Sdk",
         "checked": true

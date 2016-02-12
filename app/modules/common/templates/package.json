@@ -2,25 +2,10 @@
   "name": "<%= name %>",
   "version": "<%= version %>",
   "devDependencies": {<% if (structure === 'html') { %>
-    "grunt-html-build": "^0.5.2",<% } %>
-    "sass": "^0.5.0",
-    "node-sass": "^3.3.3",
-    "grunt": "^0.4.5",
-    "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-cssmin": "^0.12.1",<% if (structure !== 'php') { %>
-    "grunt-contrib-htmlmin": "^0.6.0",} %>
-    "grunt-php": "^1.5.1",
-    "grunt-contrib-uglify": "^0.7.0",
-    "grunt-webpack": "^1.0.11",
-    "grunt-sass": "^1.0.0",
-    "grunt-sass-globbing": "^1.4.0",
-    "grunt-autoprefixer": "^3.0.3",
-    "grunt-pixrem": "^0.1.2",
-    "grunt-svgmin": "^3.1.0",
-    "express": "^4.13.3",
+    "grunt-html-build": "^0.5.2",<% }
     "babel-core": "^6.4.5",
-    "babel-loader": "^6.2.1",
     "babel-eslint": "^4.1.6",
+    "babel-loader": "^6.2.1",
     "babel-plugin-transform-runtime": "^6.4.3",
     "babel-preset-es2015": "^6.3.13",
     "babel-runtime": "^6.3.19",
@@ -28,15 +13,25 @@
     "eslint-config-defaults": "^8.0.2",
     "eslint-config-sds": "git+https://git@github.com/Sendoushi/eslint-config-sds.git",
     "eslint-plugin-react": "^3.16.1",
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^3.0.3",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-cssmin": "^0.12.1",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-pixrem": "^0.1.2",
+    "grunt-sass": "^1.0.0",
+    "grunt-sass-globbing": "^1.4.0",
+    "grunt-svgmin": "^3.1.0",
     "json-loader": "^0.5.4",
+    "node-sass": "^3.3.3",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.4.4",
+    "sass": "^0.5.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.14.0"
   },<% if (!tech.bower) { %>
   "dependencies": {<% if (!!tech.jquery) { %>
-    "jquery": "~2.1.4",<% } %><% if (!!tech.promises) { %>
-    "bluebird": "~3.1.1",<% } %><% if (!!tech.foundation) { %>
+    "jquery": "~2.1.4",<% } %><% if (!!tech.foundation) { %>
     "foundation-sites": "^6.0.3",<% } %><% if (structure === "backbone_bedrock") { %>
     "Bedrock": "git+https://git@github.com/Sendoushi/bedrock-web.git",<% } else if (structure === "redux_riot") { %>
     "page": "^1.6.4",
@@ -44,14 +39,17 @@
     "redux-thunk": "^1.0.0",
     "riot": "^2.3.1",<% } %>
     "mout": "~0.11.1",
-    "outdated-browser": "~1.0.2"
+    "outdated-browser": "~1.0.2",
+    "bluebird": "~3.1.1"
   },<% } %>
   "scripts": {
     "test": "npm run eslint-test",
     "eslint": "./node_modules/eslint/bin/eslint.js",
-    "eslint-test": "npm run eslint -- ./src/* ./tasks/* ./config/*",
-    "build": "npm run eslint-test; node -e \"require('grunt').tasks(['build'], { gruntfile: require('path').join(process.cwd(), 'tasks/build.js') })\"",
-    "server": "node -e \"require('grunt').tasks(['server'], { gruntfile: require('path').join(process.cwd(), 'tasks/server.js') })\"",
+    "eslint-test": "npm run eslint -- ./config/* ./tasks/* ./src/*",
+    "css": "node ./tasks/build.js css",
+    "build": "node ./tasks/build.js",
+    "build-prod": "npm run eslint-test; node ./tasks/build.js prod",
+    "server": "php -S localhost:8000 -t build",
     "start": "npm run server"
   }
 }

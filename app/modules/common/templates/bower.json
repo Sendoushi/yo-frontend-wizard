@@ -2,8 +2,7 @@
   "name": "<%= name %>",
   "version": "<%= version %>",
   "dependencies": {<% if (!!tech.jquery) { %>
-    "jquery": "~2.1.4",<% } %><% if (!!tech.promises) { %>
-    "bluebird": "~3.1.1",<% } %><% if (!!tech.foundation) { %>
+    "jquery": "~2.1.4",<% } %><% if (!!tech.foundation) { %>
     "foundation-sites": "^6.0.3",<% } %><% if (structure === "backbone_bedrock") { %>
     "Bedrock": "https://github.com/Sendoushi/bedrock-web.git",<% } else if (structure === "redux_riot") { %>
     "page": "^1.6.4",
@@ -11,6 +10,7 @@
     "redux-thunk": "^1.0.0",
     "riot": "^2.3.1",<% } %>
     "mout": "~0.11.1",
-    "outdated-browser": "~1.0.2"
+    "outdated-browser": "~1.0.2",
+    "bluebird": "~3.1.1"
   }
 }
