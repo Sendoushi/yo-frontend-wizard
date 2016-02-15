@@ -3,35 +3,61 @@
 /* eslint-enable strict */
 
 /* eslint-disable no-var */
+var fs = require('fs-extra');
 var path = require('path');
+var Promise = require('bluebird');
 var cwd = process.cwd();
 var tasksPath = path.join(cwd, 'tasks');
 var modulesPath = path.join(tasksPath, 'modules');
 var buildPath = path.join(cwd, 'build');
 var env = process.argv[2];
+var rmPromise = Promise.promisify(fs.remove);
 
-var Promise = require('bluebird');
-var gruntRun = require(path.join(modulesPath, 'grunt.js'));
-var rm = require('rimraf');
-var rmPromise = Promise.promisify(rm);
-
+var newPromise;
 var bundlerFn;
 var logTask;
+var fileFn;
 var cssFn;
+/* eslint-enable no-var */
 
-require(path.join(tasksPath, 'utils/babel.js')); // Setup babel
+// Setup babel
+require(path.join(tasksPath, 'utils/babel.js'));
 
 /**
  * Log the task
  * @param  {string} task
  */
 logTask = (task) => {
-    var taskCmLine = `\n########################\n`;
-    var taskLine = `# ${task}`;
+    let taskCmLine = '';
+
+    // Lets create the comment line
+    while (taskCmLine.length < 60) {
+        taskCmLine += '#';
+    }
 
     /* eslint-disable no-console */
-    console.log(taskCmLine + taskLine + taskCmLine);
+    console.log(`\n${taskCmLine}\n# ${task} \n${taskCmLine}\n`);
     /* eslint-enable no-console */
+};
+
+/**
+ * Sets a new promise
+ * @return {promise}
+ */
+newPromise = () => (new Promise((resolve) => resolve()));
+
+/**
+ * File function
+ * @return {promise}
+ */
+fileFn = () => {
+    return newPromise()
+    // Run file task
+    .then(logTask.bind(null, 'Run file tasks'))
+    .then(require(path.join(modulesPath, 'file.js')))
+    // Run svg task
+    .then(logTask.bind(null, 'Run svg tasks'))
+    .then(require(path.join(modulesPath, 'svg.js')));
 };
 
 /**
@@ -39,10 +65,13 @@ logTask = (task) => {
  * @return {promise}
  */
 cssFn = () => {
-    logTask('Run css tasks');
-
-    // Run grunt tasks
-    return gruntRun('css');
+    return newPromise()
+    // Remove old files
+    .then(logTask.bind(null, 'Remove old style files'))
+    .then(() => rmPromise(path.join(buildPath, '*.css')))
+    // Run style task
+    .then(logTask.bind(null, 'Run style tasks'))
+    .then(require(path.join(modulesPath, 'style.js')));
 };
 
 /**
@@ -50,42 +79,24 @@ cssFn = () => {
  * @return {promise}
  */
 bundlerFn = () => {
-    logTask('Run bundler tasks');
-
+    return newPromise()
     // Remove old files
-    return rmPromise(path.join(buildPath, '*'))
+    .then(logTask.bind(null, 'Remove old bundler files'))
+    .then(() => rmPromise(path.join(buildPath, '*')))
     // Run bundler task
-    .then(() => {
-        let bundlerPath = path.join(modulesPath, 'bundler.js');
-        let promise = require(bundlerPath);
-
-        return promise();
-    })
-    // Run grunt tasks
-    .then(gruntRun(env === 'prod' ? 'build-prod' : 'build'));
+    .then(logTask.bind(null, 'Run bundler tasks'))
+    .then(require(path.join(modulesPath, 'bundler.js')))
+    // Run style task
+    .then(cssFn);
 };
 
 /**
 * Take care of running the task
 */
-(new Promise((resolve) => {
-    // Set the initial promise
-    resolve();
-}))
+newPromise()
 // Set the tasks per env
-.then(() => {
-    var fn = bundlerFn;
-    fn = env === 'css' && cssFn || fn;
-
-    return fn();
-})
-// Clean temporaries
-.then(() => {
-    logTask('Clean temporaries');
-
-    // Remove temporaries
-    return rmPromise(path.join(buildPath, '*.scss'));
-})
+.then(env === 'css' ? cssFn : bundlerFn)
+// Take care of files
+.then(env !== 'css' ? fileFn : () => {})
 // Force to exit the process
 .then(process.exit);
-/* eslint-enable strict, no-var */

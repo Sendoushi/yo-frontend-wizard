@@ -11,24 +11,24 @@ let srcPath = path.join(cwd, 'src/_styleguide');
 let configPath = path.join(srcPath, '_config.yml');
 let buildPath = path.join(cwd, 'build/_sg');
 
-let commandParams;
-let command;
-
-// Proceed with command
-commandParams = ['-s', srcPath, '-d', buildPath, '--config', configPath];
-command = spawn('jekyll', ['build'].concat(commandParams));
-
-// Listen for changes
-command.stdout.on('data', (data) => {
-    /* eslint-disable no-console */
-    console.log('' + data);
-    /* eslint-enable no-console */
-});
-
 // Export
 module.exports = () => {
     // Set the promise
     let promise = new Promise((resolve, reject) => {
+        let commandParams;
+        let command;
+
+        // Proceed with command
+        commandParams = ['-s', srcPath, '-d', buildPath, '--config', configPath];
+        command = spawn('jekyll', ['build'].concat(commandParams));
+
+        // Listen for changes
+        command.stdout.on('data', (data) => {
+            /* eslint-disable no-console */
+            console.log('' + data);
+            /* eslint-enable no-console */
+        });
+
         command.stderr.on('data', (data) => {
             reject(data);
 

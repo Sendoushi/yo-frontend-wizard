@@ -85,13 +85,11 @@ module.exports = {
     _setTasks: function () {
         templateBase([
             'tasks/build.js',
-            'tasks/config/file.js',
-            'tasks/config/script.js',
-            'tasks/config/style.js',
-            'tasks/config/svg.js',
             'tasks/modules/bundler.js',
-            'tasks/modules/grunt.js',
+            'tasks/modules/file.js',
+            'tasks/modules/style.js',
             'tasks/modules/styleguide.js',
+            'tasks/modules/svg.js',
             'tasks/utils/babel.js'
         ]);
     },

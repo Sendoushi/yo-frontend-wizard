@@ -4,59 +4,43 @@
 
 let path = require('path');
 let Promise = require('bluebird');
+let spawn = require('child_process').spawn;
 let webpack = require('webpack');
 let ProgressPlugin = require('webpack/lib/ProgressPlugin');
 let cwd = process.cwd();
 let env = process.argv[2];
 
-let mapping = require(path.join(cwd, 'config/mapping.js'));
-let srcPath = path.join(cwd, 'src');
 let buildPath = path.join(cwd, 'build');
 
-let srcFile = path.join(srcPath, 'bootstrap.js');
 let webpackConfig;
 let progressFn;
 
 // Set the webpack config
 webpackConfig = {
     // webpack options
-    entry: srcFile,
-    output: {
-        path: buildPath,
-        filename: 'app.js'
-    },
+    entry: path.join(cwd, 'src', 'bootstrap.js'),
+    output: { path: buildPath, filename: 'app.js' },
     stats: {
         // Configure the console output
-        colors: true,
-        modules: true,
-        reasons: true
+        colors: true, modules: true, reasons: true
     },
     target: 'web',
     resolve: {
         modulesDirectories: [
-            './',
-            'node_modules',
-            'bower_components',
-            'src',
-            'src/utils',
-            'src/modules/utils',
-            'src/components/utils'
+            './', 'node_modules', 'bower_components',
+            'src', 'src/utils', 'src/modules/utils', 'src/components/utils'
         ],
-        alias: mapping
+        alias: require(path.join(cwd, 'config/mapping.js'))
     },
     module: {
         loaders: [{
-            test: /\.js?$/,
-            loader: 'babel',
-            query: { presets: ['es2015'] },
+            test: /\.js?$/, loader: 'babel', query: { presets: ['es2015'] },
             exclude: /(node_modules|bower_components)/
         }, {
-            test: /\.json?$/,
-            loader: 'json',
+            test: /\.json?$/, loader: 'json',
             exclude: /(node_modules|bower_components)/
         }, {
-            test: /\.html?$/,
-            loader: 'raw',
+            test: /\.html?$/, loader: 'raw',
             exclude: /(node_modules|bower_components)/
         }]
     },
@@ -131,6 +115,36 @@ module.exports = () => {
                 resolve(stats);
             }
         });
+    })
+    .then(() => {
+        let src = path.join(buildPath, 'app.js');
+        let uglifyPath = path.join(cwd, 'node_modules/uglify-js/bin/uglifyjs');
+        let uglifyCommand;
+        let uglifyPromise;
+
+        // Proceed with command
+        uglifyCommand = spawn(uglifyPath, [src, '-o', src]);
+
+        // Set the promise
+        uglifyPromise = new Promise((resolve, reject) => {
+            uglifyCommand.stderr.on('data', (data) => {
+                reject(data);
+
+                /* eslint-disable no-console */
+                console.error('' + data);
+                /* eslint-enable no-console */
+            });
+
+            uglifyCommand.on('close', (code) => {
+                if (code !== 0) {
+                    reject();
+                } else {
+                    resolve();
+                }
+            });
+        });
+
+        return uglifyPromise;
     });
 
     return promise;
