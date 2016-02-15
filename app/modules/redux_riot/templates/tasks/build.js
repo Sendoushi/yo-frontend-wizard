@@ -55,7 +55,12 @@ bundlerFn = () => {
     // Remove old files
     return rmPromise(path.join(buildPath, '*'))
     // Run bundler task
-    .then(require(path.join(modulesPath, 'bundler.js')))
+    .then(() => {
+        let bundlerPath = path.join(modulesPath, 'bundler.js');
+        let promise = require(bundlerPath);
+
+        return promise();
+    })
     // Run grunt tasks
     .then(gruntRun(env === 'prod' ? 'build-prod' : 'build'));
 };

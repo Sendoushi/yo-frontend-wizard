@@ -13,7 +13,6 @@ let buildPath = path.join(cwd, 'build/_sg');
 
 let commandParams;
 let command;
-let promise;
 
 // Proceed with command
 commandParams = ['-s', srcPath, '-d', buildPath, '--config', configPath];
@@ -26,24 +25,26 @@ command.stdout.on('data', (data) => {
     /* eslint-enable no-console */
 });
 
-// Set the promise
-promise = new Promise((resolve, reject) => {
-    command.stderr.on('data', (data) => {
-        reject(data);
-
-        /* eslint-disable no-console */
-        console.error('' + data);
-        /* eslint-enable no-console */
-    });
-
-    command.on('close', (code) => {
-        if (code !== 0) {
-            reject();
-        } else {
-            resolve();
-        }
-    });
-});
-
 // Export
-module.exports = promise;
+module.exports = () => {
+    // Set the promise
+    let promise = new Promise((resolve, reject) => {
+        command.stderr.on('data', (data) => {
+            reject(data);
+
+            /* eslint-disable no-console */
+            console.error('' + data);
+            /* eslint-enable no-console */
+        });
+
+        command.on('close', (code) => {
+            if (code !== 0) {
+                reject();
+            } else {
+                resolve();
+            }
+        });
+    });
+
+    return promise;
+};

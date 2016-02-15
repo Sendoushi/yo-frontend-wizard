@@ -16,7 +16,6 @@ let buildPath = path.join(cwd, 'build');
 let srcFile = path.join(srcPath, 'bootstrap.js');
 let webpackConfig;
 let progressFn;
-let promise;
 
 // Set the webpack config
 webpackConfig = {
@@ -112,25 +111,27 @@ progressFn = (percentage) => {
     }
 };
 
-// Set the grunt promise
-promise = new Promise((resolve, reject) => {
-    let compiler;
-
-    // Set the webpack
-    compiler = webpack(webpackConfig);
-
-    // Set plugins
-    compiler.apply(new ProgressPlugin(progressFn));
-
-    // Run now
-    compiler.run(function (err, stats) {
-        if (err) {
-            reject(err);
-        } else {
-            resolve(stats);
-        }
-    });
-});
-
 // Export
-module.exports = promise;
+module.exports = () => {
+    // Set the promise
+    let promise = new Promise((resolve, reject) => {
+        let compiler;
+
+        // Set the webpack
+        compiler = webpack(webpackConfig);
+
+        // Set plugins
+        compiler.apply(new ProgressPlugin(progressFn));
+
+        // Run now
+        compiler.run(function (err, stats) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(stats);
+            }
+        });
+    });
+
+    return promise;
+};
