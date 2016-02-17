@@ -16,9 +16,8 @@ import deepEquals from 'mout/lang/deepEquals.js';
  * @param  {object} filler
  */
 let updateState = (stateToUpd, state, filler) => {
-    let stateToBe = deepClone(state);
-    let equals = deepEquals(stateToUpd, stateToBe);
-    let newState = deepMixIn({}, stateToUpd, !equals && stateToBe);
+    let newState = deepMixIn({}, deepClone(stateToUpd), deepClone(state));
+    let equals = deepEquals(stateToUpd, newState);
 
     // Fill in with the filler
     newState = !!filler ? deepFillIn(newState, filler) : newState;
