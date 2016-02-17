@@ -28,24 +28,32 @@
 // Example of primary and secondary
 //
 // /* Colors */
-// $darkest-color: #000;
-// $brightest-color: #fff;
-//
-// $primary-color: $darkest-color;
-// $primary-brightest-color: $darkest-color;
-// $primary-bright-color: $darkest-color;
-// $primary-dark-color: $darkest-color;
-// $primary-darkest-color: $darkest-color;
-//
-// $primary-inverse-color: $brightest-color;
-//
-// $secondary-color: $darkest-color;
-// $secondary-brightest-color: $darkest-color;
-// $secondary-bright-color: $darkest-color;
-// $secondary-dark-color: $darkest-color;
-// $secondary-darkest-color: $darkest-color;
-//
-// $secondary-inverse-color: $brightest-color;
+// $neutral-30-color: #343c3c;
+// $neutral-50-color: #7c8d8d;
+// $neutral-90-color: #e5ecee;
+// $neutral-95-color: #F0F8FA;
+// $neutral-100-color: #fff;
+
+// $primary-0-color: #283c50;
+// $primary-50-color: #385a78;
+// $primary-100-color: #00dff8;
+
+// $secondary-50-color: #00b861;
+
+// // General state colors
+// $state-0-color: #B7D93D;
+// $state-1-color: #517330;
+// $state-2-color: #D92B2B;
+// $state-3-color: #732A24;
+// $state-4-color: #E8CD55;
+// $state-5-color: #FF9A37;
+
+// // Project state colors
+// $project-state-0-color: #96E264;
+// $project-state-1-color: #49BAF4;
+// $project-state-2-color: #FCED6C;
+// $project-state-3-color: #FF8655;
+// $project-state-4-color: #E666E8;
 
 /////////////////////////////
 // Animation
