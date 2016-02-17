@@ -38,6 +38,9 @@ let store = initStore(INITIAL_STATE, {
     'SET_CONTENT': setContent
 });
 
+// Set some other methods ot be used
+store.getInitial = () => INITIAL_STATE;
+
 // -----------------------------------------
 // EXPORT
 
