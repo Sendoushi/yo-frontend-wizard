@@ -50,14 +50,14 @@ module.exports = {
         // Template and copy files
         templateBase([
             'src/bootstrap.js',
-            'src/components/_assets/html/index.html',
             'src/modules/app/store.js',
             'src/modules/app/actions.js',
             'src/modules/utils/baseRoute.js',
             'src/modules/utils/baseStore.js',
             'src/modules/utils/baseActions.js',
             'src/components/utils/baseComponent.js',
-            'src/components/app.js'
+            'src/containers/_assets/html/index.php',
+            'src/containers/app.js'
         ]);
 
         // Set app modules

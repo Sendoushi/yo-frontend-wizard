@@ -1,6 +1,6 @@
 import { isIe, isMobile } from 'is.js';
 import riot from 'riot';
-import 'components/app.js';
+import 'containers/app.js';
 
 // Wait for the document to be ready
 document.addEventListener('DOMContentLoaded', function () {
