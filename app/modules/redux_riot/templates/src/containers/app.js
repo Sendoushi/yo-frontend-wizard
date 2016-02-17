@@ -1,6 +1,6 @@
 import riot from 'riot';
-import { updateState } from 'baseComponent.js';
-import outdatedBrowser from 'outdatedbrowser.js';
+import outdatedBrowser from 'utils/outdatedbrowser.js';
+import { updateState } from 'components/utils/baseComponent.js';
 import actions from 'modules/app/actions.js';
 
 /**

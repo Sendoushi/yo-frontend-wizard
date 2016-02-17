@@ -1,4 +1,4 @@
-import { init, setRoute, updateOnAction } from 'baseRoute.js';
+import { init, setRoute, updateOnAction } from 'modules/utils/baseRoute.js';
 import appActions from 'modules/app/actions.js';
 import rootRoutes from './modules/root.js';
 

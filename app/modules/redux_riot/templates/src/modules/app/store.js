@@ -1,4 +1,4 @@
-import { initStore } from 'baseStore.js';
+import { initStore } from 'modules/utils/baseStore.js';
 
 // -----------------------------------------
 // VARS

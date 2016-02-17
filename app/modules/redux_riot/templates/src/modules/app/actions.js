@@ -1,4 +1,4 @@
-import { addView, removeView } from 'baseActions.js';
+import { addView, removeView } from 'modules/utils/baseActions.js';
 import store from './store.js';
 
 // -----------------------------------------

@@ -26,10 +26,7 @@ webpackConfig = {
     },
     target: 'web',
     resolve: {
-        modulesDirectories: [
-            './', 'node_modules', 'bower_components',
-            'src', 'src/utils', 'src/modules/utils', 'src/components/utils'
-        ],
+        modulesDirectories: ['./', 'node_modules', 'bower_components', 'src'],
         alias: require(path.join(cwd, 'config/mapping.js'))
     },
     module: {
