@@ -1,4 +1,4 @@
-import { isIe, isMobile } from 'is.js';
+import { isIe, isMobile } from 'utils/is.js';
 import riot from 'riot';
 import 'containers/app.js';
 
