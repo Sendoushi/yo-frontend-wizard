@@ -19,6 +19,11 @@ let setContent = (content) => {
  */
 let getContent = () => store.getState().content;
 
+/**
+ * Gets initial state of app
+ */
+let getInitial = () => store.getInitial();
+
 // -----------------------------------------
 // EXPORT
 
@@ -26,5 +31,5 @@ export default {
     addView: addView.bind(null, store),
     removeView: removeView.bind(null, store),
 
-    getContent, setContent
+    getInitial, getContent, setContent
 };
