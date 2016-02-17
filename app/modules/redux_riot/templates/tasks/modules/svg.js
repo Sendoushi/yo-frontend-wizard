@@ -13,7 +13,11 @@ let filesUtil = require(path.join(cwd, 'tasks/utils/files.js'));
 
 let buildPath = path.join(cwd, 'build');
 let svgFiles = env === 'prod' ? filesUtil.getFiles([
-    { cwd: buildPath, src: ['**/_assets/**/*.svg'], dest: buildPath }
+    {
+        cwd: buildPath,
+        src: '**/_assets/**/*.svg',
+        dest: buildPath
+    }
 ]) : [];
 let svgo = new SVGO({
     plugins: [

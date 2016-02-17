@@ -31,7 +31,7 @@ let files = filesUtil.getFiles([
     }
 ].concat(env !== 'prod' ? [] : [{
     cwd: path.join(cwd, 'node_modules/outdated-browser'),
-    src: '*/lang/en.html',
+    src: 'outdatedbrowser/lang/en.html',
     dest: buildPath
 }]));
 
