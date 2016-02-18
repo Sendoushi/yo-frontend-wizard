@@ -1,5 +1,5 @@
 /* Import vendors */
-@import './vendor/normalize.scss';
+@import '../../../../node_modules/normalize.css/normalize.css';
 @import '../../../../node_modules/outdated-browser/outdatedbrowser/outdatedbrowser.scss';
 
 <% if (!!tech.foundation) { %>/* Import basic foundation */

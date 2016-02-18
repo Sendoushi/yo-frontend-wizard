@@ -37,6 +37,7 @@
     "redux-thunk": "^1.0.0",
     "riot": "^2.3.1",<% } %>
     "mout": "~0.11.1",
+    "normalize.css": "^3.0.3",
     "outdated-browser": "~1.0.2",
     "bluebird": "~3.1.1"
   },<% } %>
