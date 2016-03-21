@@ -44,9 +44,3 @@ out/
 # App Files
 # --------------------
 node_modules
-*/node_modules
-*/npm-debug.*
-*/components
-*/tmp
-*/build
-app/_tmp.js

@@ -1,0 +1,13 @@
+{
+  "name": "<%= name %>",
+  "version": "<%= version %>",
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "eslint": "^1.10.3",
+    "eslint-config-defaults": "^8.0.2",
+    "eslint-config-sds": "git://github.com/sendoushi/eslint-config-sds.git",
+
+    "fs-extra": "^0.26.5"
+  },
+  "scripts": {}
+}

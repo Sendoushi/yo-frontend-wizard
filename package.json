@@ -4,19 +4,23 @@
   "description": "Generator for frontend",
   "keywords": [ "yeoman-generator" ],
   "scripts": {
+    "test": "npm run eslint-test",
     "eslint": "./node_modules/eslint/bin/eslint.js",
-    "eslint-test": "npm run eslint -- ./app/index.js ./app/utils/* ./app/modules/*/index.js"
+    "eslint-test": "npm run eslint -- ./app/index.js ./src/*"
   },
   "devDependencies": {
-    "babel-core": "^6.4.5",
-    "babel-runtime": "^6.3.19",
     "babel-eslint": "^4.1.6",
     "eslint": "^1.10.3",
     "eslint-config-defaults": "^8.0.2",
-    "eslint-config-sds": "git+https://git@github.com/Sendoushi/eslint-config-sds.git",
+    "eslint-config-sds": "git://github.com/sendoushi/eslint-config-sds.git",
     "eslint-plugin-react": "^3.16.1"
   },
   "dependencies": {
-    "yeoman-generator": "^0.22.1"
+    "yeoman-generator": "^0.22.1",
+    "babel-core": "^6.4.5",
+    "babel-plugin-transform-runtime": "^6.4.3",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-2": "^6.5.0"
   }
 }

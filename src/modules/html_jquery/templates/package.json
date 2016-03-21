@@ -1,0 +1,27 @@
+{
+  "name": "<%= name %>",
+  "version": "<%= version %>",
+  "devDependencies": {
+    "babel-eslint": "^4.1.6",
+    "eslint": "^1.10.3",
+    "eslint-config-defaults": "^8.0.2",
+    "eslint-config-sds": "git://github.com/sendoushi/eslint-config-sds.git",
+
+    "fs-extra": "^0.26.5"
+  },
+  "dependencies": {
+    "bedrock": "git://github.com/Sendoushi/bedrock.git#v0.1.13",
+    "bluebird": "~3.1.1",
+    "jquery": "~2.1.4"
+  },
+  "scripts": {
+    "test": "npm run eslint-test",
+    "eslint": "./node_modules/eslint/bin/eslint.js",
+    "eslint-test": "npm run eslint -- ./config/* ./tasks/* ./src/*",
+    "css": "node ./tasks/build.js css",
+    "build": "node ./tasks/build.js",
+    "build-prod": "npm run eslint-test; node ./tasks/build.js prod",
+    "server": "php -S localhost:8000 -t build",
+    "start": "npm run server"
+  }
+}

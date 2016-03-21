@@ -1,0 +1,56 @@
+[{
+    "name": "name",
+    "type": "input",
+    "message": "Name",
+    "default": "App"
+}, {
+    "name": "version",
+    "type": "input",
+    "message": "Version",
+    "default": "0.0.1"
+}, {
+    "name": "repo",
+    "type": "input",
+    "message": "Repository url"
+}, {
+    "name": "structure",
+    "type": "list",
+    "message": "Structure",
+    "default": 0,
+    "choices": [{
+        "value": "redux_react",
+        "name": "Redux + React"
+    }, {
+        "value": "slim_twig",
+        "name": "Slim + Twig"
+    }, {
+        "value": "html_jquery",
+        "name": "HTML + jQuery"
+    }, {
+        "value": "none",
+        "name": "No structure"
+    }]
+}, {
+    "name": "minie",
+    "type": "list",
+    "message": "Minimum IE Browser",
+    "default": 2,
+    "choices": [{
+        "value": "9",
+        "name": "ie9"
+    }, {
+        "value": "10",
+        "name": "ie10"
+    }, {
+        "value": "11",
+        "name": "ie11"
+    }, {
+        "value": "edge",
+        "name": "Edge"
+    }]
+}, {
+    "name": "routes",
+    "type": "input",
+    "message": "State your routes separated by \",\" and internal routes preceeded by \"-\" (multiple for nested)",
+    "default": "index,contact"
+}]
