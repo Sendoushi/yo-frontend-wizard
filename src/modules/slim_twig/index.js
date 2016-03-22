@@ -76,6 +76,7 @@ const init = self => {
         in: [
             '.editorconfig', '.gitignore', '.eslintrc',
             '.eslintignore', 'package.json', 'README.md',
+            'config/config.js', 'config/mapping.js',
             'composer.json', 'tasks/build.js',
             'src/favicon.ico',
             'src/bootstrap.js'

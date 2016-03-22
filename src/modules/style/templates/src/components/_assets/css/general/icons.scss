@@ -6,13 +6,24 @@
     line-height: 0 !important;
 }
 
-.icon,
-.icon.icon-small {
-    width: 14px;
-    height: 14px;
-}
 
-.icon.icon-medium {
-    width: 28px;
-    height: 28px;
+.icon {
+    &,
+    &.icon-small {
+        width: 14px;
+        height: 14px;
+    }
+
+    &.icon-medium {
+        width: 28px;
+        height: 28px;
+    }
+
+    & {
+        fill: $neutral-0-color;
+    }
+
+    &.inverse {
+        fill: $neutral-100-color;
+    }
 }

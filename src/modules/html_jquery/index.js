@@ -21,6 +21,7 @@ const init = self => {
             '.editorconfig', '.gitignore', '.eslintrc',
             '.eslintignore', 'package.json', 'README.md',
             'tasks/build.js',
+            'config/config.js', 'config/mapping.js',
             'src/favicon.ico', 'src/sdk/sdk.js',
             'src/bootstrap.js',
             'src/containers/_assets/html/index.html'

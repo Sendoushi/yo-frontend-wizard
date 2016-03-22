@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { cE } from 'bedrock/component';
 import outdatedBrowser from 'bedrock/outdatedbrowser';
 
 // -----------------------------------------
@@ -24,13 +25,25 @@ const componentDidMount = () => {
  */
 const render = () => {
     return (
-    // <div className="ss-rg app">
-    //     <div id="outdated">
-    //         <h6>Your browser is out-of-date!</h6>
-    //         <p>Update your browser to view this website correctly. <a href="http://outdatedbrowser.com/" id="btnUpdateBrowser">Update my browser now </a></p>
-    //         <p className="last"><a title="Close" id="btnCloseUpdateBrowser" href="#">&times;</a></p>
-    //     </div>
-    // </div>
+    cE('div.ss-rg.app', null, [
+        cE('div', { id: 'outdated' }, [
+            cE('h6', null, 'Your browser is out-of-date!'),
+            cE('p', null, [
+                'Update your browser to view this website correctly. ',
+                cE('a', {
+                    id: 'btnUpdateBrowser',
+                    href: 'http://outdatedbrowser.com/'
+                }, ['Update my browser now '])
+            ]),
+            cE('p.last', null, [
+                cE('a', {
+                    id: 'btnCloseUpdateBrowser',
+                    title: 'Close',
+                    href: '#'
+                }, ['&times;'])
+            ])
+        ])
+    ])
     );
 };
 
@@ -47,8 +60,7 @@ class App extends React.Component {
  * Mounts app
  * @param  {element} el
  */
- const mountApp = el => {};
-// const mountApp = el => ReactDOM.render(<App/>, el);
+const mountApp = el => ReactDOM.render(cE(App), el);
 
 // -------------------------------------------
 // EXPORT

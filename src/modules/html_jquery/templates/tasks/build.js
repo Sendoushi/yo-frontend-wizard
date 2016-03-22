@@ -59,11 +59,6 @@ fileFn = () => {
         const fileTask = require(path.join(tasksPath, 'file.js'));
         const files = [
             {
-                cwd: 'node_modules/bedrock/src',
-                src: '**/_assets/**/*.*',
-                ignore: ['**/*.scss', '**/*.css', '**/*.php', '**/*.html', '**/*.ico'],
-                dest: buildPath
-            }, {
                 cwd: srcPath,
                 src: '**/_assets/**/*.*',
                 ignore: ['**/*.scss', '**/*.css', '**/*.php', '**/*.html', '**/*.ico'],
@@ -133,6 +128,7 @@ bundlerFn = () => {
         const fileTask = require(path.join(tasksPath, 'bundler.js'));
         const mappingPath = path.join(cwd, 'config/mapping.js');
         const files = [{
+            appConfig: path.join(cwd, 'config/config.js'),
             entry: [path.join(cwd, 'src', 'bootstrap.js')],
             output: {
                 path: buildPath

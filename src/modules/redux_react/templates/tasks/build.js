@@ -133,6 +133,7 @@ bundlerFn = () => {
         const fileTask = require(path.join(tasksPath, 'bundler.js'));
         const mappingPath = path.join(cwd, 'config/mapping.js');
         const files = [{
+            appConfig: path.join(cwd, 'config/config.js'),
             entry: [path.join(cwd, 'src', 'bootstrap.js')],
             output: {
                 path: buildPath
