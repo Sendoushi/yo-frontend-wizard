@@ -59,13 +59,23 @@ fileFn = () => {
         const fileTask = require(path.join(tasksPath, 'file.js'));
         const files = [
             {
-                cwd: srcPath,
-                src: '**/_assets/**/*.*',
-                ignore: ['**/*.scss', '**/*.css', '**/*.php', '**/*.html', '**/*.ico'],
+                cwd: path.join(srcPath, 'containers'),
+                src: '**/*',
+                ignore: ['*.scss', '*.css', '**/*.scss', '**/*.css'],
                 dest: buildPath
             }, {
-                cwd: path.join(srcPath, 'containers/_assets/html'),
-                src: 'index.html',
+                cwd: path.join(srcPath, 'inc'),
+                src: '**/*',
+                ignore: ['*.scss', '*.css', '**/*.scss', '**/*.css'],
+                dest: path.join(buildPath, 'inc')
+            }, {
+                cwd: path.join(srcPath, 'components'),
+                src: '**/*',
+                ignore: ['*.scss', '*.css', '**/*.scss', '**/*.css'],
+                dest: path.join(buildPath, 'components')
+            }, {
+                cwd: srcPath,
+                src: '.htaccess',
                 dest: buildPath
             }, {
                 cwd: srcPath,

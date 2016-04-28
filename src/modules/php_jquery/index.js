@@ -16,7 +16,7 @@ import { createFolders } from '../../utils/createFolders.js';
  */
 const init = self => {
     // Templates files in the root
-    templateBase(self, '/html_jquery/templates', {
+    templateBase(self, '/php_jquery/templates', {
         in: [
             '.editorconfig', '.gitignore', '.eslintrc',
             '.eslintignore', 'package.json', 'README.md',
@@ -24,7 +24,11 @@ const init = self => {
             'config/config.js', 'config/mapping.js',
             'src/favicon.ico', 'src/sdk/sdk.js',
             'src/bootstrap.js',
-            'src/containers/_assets/html/index.html'
+            'src/.htaccess',
+            'src/containers/index.php',
+            'src/components/footer.php',
+            'src/components/header.php',
+            'src/inc/main.php'
         ]
     });
 

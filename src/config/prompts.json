@@ -24,8 +24,8 @@
         "value": "slim_twig",
         "name": "Slim + Twig"
     }, {
-        "value": "html_jquery",
-        "name": "HTML + jQuery"
+        "value": "php_jquery",
+        "name": "PHP + jQuery"
     }, {
         "value": "none",
         "name": "No structure"
