@@ -1,3 +1,9 @@
+# Deprecated
+
+No longer using or maintaining this.
+
+--------------------------
+
 # Yeoman Frontend Generator
 
 Do not forget to complete the README.
